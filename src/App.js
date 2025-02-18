@@ -7,36 +7,42 @@ import FeeStructure from './pages/FeeStructure';
 import './App.css';
 import InquiryForm from './components/layout/Form';
 import FullGallery from './components/sections/FullGallery';
-import ExitModal from './components/layout/ExitModal'; // Import the ExitModal component
+import ExitModal from './components/layout/ExitModal';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [timeoutDuration, setTimeoutDuration] = useState(30000); // Start at 30 sec
+  let modalShowCount = 0; // Keep count within session only
 
-  // Show exit modal when trying to leave the page
   useEffect(() => {
-    const handleBeforeUnload = (e) => {
-      e.preventDefault();
-      e.returnValue = ''; // This triggers the popup on page unload
-      setIsModalOpen(true); // Open the modal
+    // Check if the user is revisiting the site (refresh)
+    const isReturningUser = localStorage.getItem('returningUser');
+
+    if (isReturningUser) {
+      setTimeoutDuration(10000); // If user refreshes, show modal after 10 sec
+    } else {
+      localStorage.setItem('returningUser', 'true'); // Mark user as returning
+    }
+
+    let idleTimer;
+
+    const startIdleTimer = () => {
+      idleTimer = setTimeout(() => {
+        setIsModalOpen(true);
+        modalShowCount += 1;
+
+        // Set exponential timeout: 30s → 1m → 2m → 4m (Only for current session)
+        if (modalShowCount === 1) setTimeoutDuration(60000); // 1 min
+        else if (modalShowCount === 2) setTimeoutDuration(120000); // 2 min
+        else if (modalShowCount === 3) setTimeoutDuration(240000); // 4 min
+      }, timeoutDuration);
     };
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
+    startIdleTimer();
 
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
-  }, []);
-
-  // Timer to show modal after inactivity (e.g., 10 seconds)
-  useEffect(() => {
-    const idleTimer = setTimeout(() => {
-      setIsModalOpen(true);
-    }, 10000); // 10 seconds of inactivity
-
-    // Clear timeout on user interaction
     const resetTimer = () => {
       clearTimeout(idleTimer);
-      setTimeout(() => setIsModalOpen(true), 10000);
+      startIdleTimer();
     };
 
     window.addEventListener('mousemove', resetTimer);
@@ -47,11 +53,11 @@ function App() {
       window.removeEventListener('mousemove', resetTimer);
       window.removeEventListener('keydown', resetTimer);
     };
-  }, []);
+  }, [timeoutDuration]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    alert('Form submitted successfully!'); // Handle form submission
+    alert('Form submitted successfully!');
     setIsModalOpen(false);
   };
 
@@ -70,7 +76,7 @@ function App() {
         <Footer />
       </div>
 
-      {/* Show Exit Modal when isModalOpen is true */}
+      {/* Exit Modal */}
       <ExitModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
