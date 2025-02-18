@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Gallery.css";
 
-const IMAGEKIT_URL = "https://ik.imagekit.io/vbjia17nu/";
+
 const PRIVATE_API_KEY = "private_jM8qtJZ+GzAwkea1dpucoPMaCC4=";
 const GALLERY_CATEGORIES = [
   { id: "campus", label: "Campus", path: "Gallery/Campus" },

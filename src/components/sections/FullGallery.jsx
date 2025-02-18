@@ -4,7 +4,7 @@ import LazyLoad from "react-lazy-load";
 import { motion } from "framer-motion";
 import "../styles/FullGallery.css";
 
-const IMAGEKIT_URL = "https://ik.imagekit.io/vbjia17nu/";
+
 const PRIVATE_API_KEY = "private_jM8qtJZ+GzAwkea1dpucoPMaCC4="; // ⚠️ Exposed Key (Not Secure)
 const GALLERY_CATEGORIES = [
   { id: "campus", label: "Campus", path: "Gallery/Campus" },

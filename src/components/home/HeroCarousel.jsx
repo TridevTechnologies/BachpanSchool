@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/HeroCarousel.css";
 
-const IMAGEKIT_URL = "https://ik.imagekit.io/vbjia17nu/";
+
 const PRIVATE_API_KEY = "private_jM8qtJZ+GzAwkea1dpucoPMaCC4=";
 const BANNER_FOLDER = "Banner";
 
