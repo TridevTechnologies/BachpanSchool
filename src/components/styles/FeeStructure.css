@@ -1,0 +1,214 @@
+.fee-structure-page {
+    padding: 4rem 0;
+    background-color: var(--background-light);
+  }
+  
+  .fee-header {
+    text-align: center;
+    padding: 2rem 0;
+    background-color: var(--primary);
+    color: white;
+    margin-bottom: 3rem;
+  }
+  
+  .fee-header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .fee-header p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  /* Fee Table Styles */
+  .fee-table-container {
+    margin-bottom: 4rem;
+    overflow-x: auto;
+  }
+  
+  .fee-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  
+  .fee-table th,
+  .fee-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .fee-table th {
+    background-color: var(--primary);
+    color: white;
+    font-weight: 600;
+  }
+  
+  .fee-table tr:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .fee-table td:first-child {
+    font-weight: 500;
+    color: var(--primary);
+  }
+  
+  /* Additional Fees Section */
+  .additional-fees {
+    margin-bottom: 4rem;
+  }
+  
+  .additional-fees h2 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .additional-fees-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .fee-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .fee-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .fee-card h3 {
+    color: var(--primary);
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  
+  .fee-card p {
+    color: var(--text-secondary);
+  }
+  
+  /* Fee Policy Section */
+  .fee-policy {
+    margin-bottom: 4rem;
+  }
+  
+  .fee-policy h2 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .policy-points {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  
+  .policy-point {
+    text-align: center;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .policy-point h3 {
+    color: var(--primary);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  
+  .policy-point p {
+    color: var(--text-secondary);
+  }
+  
+  /* CTA Section */
+  .fee-cta {
+    text-align: center;
+    padding: 3rem;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 0.5rem;
+    margin-top: 4rem;
+  }
+  
+  .fee-cta h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .fee-cta p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+  
+  .enroll-button {
+    padding: 1rem 2.5rem;
+    background-color: var(--secondary);
+    color: var(--primary);
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .enroll-button:hover {
+    background-color: var(--secondary-dark);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .fee-header h1 {
+      font-size: 2rem;
+    }
+  
+    .policy-points {
+      grid-template-columns: 1fr;
+    }
+  
+    .fee-table {
+      font-size: 0.9rem;
+    }
+  
+    .fee-table th,
+    .fee-table td {
+      padding: 0.75rem;
+    }
+  
+    .fee-cta {
+      padding: 2rem;
+    }
+  
+    .fee-cta h2 {
+      font-size: 1.5rem;
+    }
+  
+    .fee-cta p {
+      font-size: 1rem;
+    }
+  }
+  

@@ -1,0 +1,108 @@
+/* ======= ADMISSION INQUIRY FORM ======= */
+.admissioninquiry-form {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Two-column responsive layout */
+.admissioninquiry-form-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.admissioninquiry-form-left,
+.admissioninquiry-form-right {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* Left Section - Titles & Description */
+.admissioninquiry-form-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.admissioninquiry-form-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #003366;
+  margin-bottom: 10px;
+}
+
+.admissioninquiry-form-description {
+  text-align: left;
+  font-size: 1.1rem;
+  color: #496308;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* Right Section - Form */
+.admissioninquiry-form-form {
+  display: grid;
+  gap: 20px;
+}
+
+.admissioninquiry-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.admissioninquiry-form-group label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.admissioninquiry-form-group input,
+.admissioninquiry-form-group select,
+.admissioninquiry-form-group textarea {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.admissioninquiry-form-group textarea {
+  height: 120px;
+  resize: vertical;
+}
+
+/* Submit Button */
+.admissioninquiry-form-submit-btn {
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admissioninquiry-form-submit-btn:hover {
+  background-color: #45a049;
+}
+
+/* Error Messages */
+.admissioninquiry-form-error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: -10px;
+  text-align: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .admissioninquiry-form-inner {
+      flex-direction: column;
+  }
+}
