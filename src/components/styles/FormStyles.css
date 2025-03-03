@@ -1,108 +1,298 @@
-/* ======= ADMISSION INQUIRY FORM ======= */
-.admissioninquiry-form {
-  max-width: 900px;
-  margin: 50px auto;
-  padding: 30px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Variables now scoped to the inquiry-form-container only */
+.inquiry-form-container {
+  --primary-color: #1a5276;
+  --secondary-color: #3498db;
+  --accent-color: #f39c12;
+  --text-color: #333;
+  --background-color: #f9f9f9;
+  --form-bg: #ffffff;
+  --input-bg: #f5f5f5;
+  --border-color: #e0e0e0;
+  --success-color: #27ae60;
+  --error-color: #e74c3c;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+  
+  margin-top: 100px; /* Space from big navbar */
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  background: var(--background-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  font-family: 'Arial', sans-serif;
 }
 
-/* Two-column responsive layout */
-.admissioninquiry-form-inner {
+.inquiry-form-wrapper {
   display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
+  flex-direction: row;
 }
 
-.admissioninquiry-form-left,
-.admissioninquiry-form-right {
+/* Info Panel Styling */
+.inquiry-info-panel {
+  background: var(--primary-color);
+  color: white;
+  padding: 2.5rem;
   flex: 1;
-  min-width: 300px;
 }
 
-/* Left Section - Titles & Description */
-.admissioninquiry-form-left {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 20px;
-}
-
-.admissioninquiry-form-title {
-  text-align: center;
+.inquiry-title {
   font-size: 2rem;
-  color: #003366;
-  margin-bottom: 10px;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-.admissioninquiry-form-description {
-  text-align: left;
+.inquiry-description {
+  margin-bottom: 2rem;
   font-size: 1.1rem;
-  color: #496308;
-  margin-bottom: 20px;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
-/* Right Section - Form */
-.admissioninquiry-form-form {
-  display: grid;
-  gap: 20px;
+.why-choose-us {
+  margin-top: 2rem;
 }
 
-.admissioninquiry-form-group {
+.why-choose-us h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+}
+
+.benefits-list {
+  padding-left: 0.5rem;
+  list-style-type: none;
+}
+
+.benefits-list li {
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+  line-height: 1.4;
+  position: relative;
+}
+
+/* Form Panel Styling */
+.inquiry-form-panel {
+  background: var(--form-bg);
+  padding: 2.5rem;
+  flex: 1;
+  position: relative;
+}
+
+/* Cross Button for closing/back */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.form-heading {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.inquiry-form {
   display: flex;
   flex-direction: column;
+  gap: 1.2rem;
 }
 
-.admissioninquiry-form-group label {
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: #333;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.8rem;
 }
 
-.admissioninquiry-form-group input,
-.admissioninquiry-form-group select,
-.admissioninquiry-form-group textarea {
-  padding: 12px;
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 0.95rem;
+}
+
+.required {
+  color: var(--error-color);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--input-bg);
   font-size: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  width: 100%;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.admissioninquiry-form-group textarea {
-  height: 120px;
-  resize: vertical;
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
 }
 
-/* Submit Button */
-.admissioninquiry-form-submit-btn {
-  padding: 12px 20px;
-  font-size: 1.1rem;
-  background-color: #4CAF50;
+.submit-button {
+  background-color: var(--primary-color);
   color: white;
   border: none;
-  border-radius: 5px;
+  padding: 1rem;
+  border-radius: 6px;
+  font-size: 1.1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-weight: 600;
+  transition: background-color 0.3s;
+  margin-top: 0.5rem;
 }
 
-.admissioninquiry-form-submit-btn:hover {
-  background-color: #45a049;
+.submit-button:hover {
+  background-color: #154360;
 }
 
-/* Error Messages */
-.admissioninquiry-form-error-message {
-  color: red;
+.submit-button:disabled {
+  background-color: #7f8c8d;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: var(--error-color);
   font-size: 0.9rem;
-  margin-top: -10px;
-  text-align: center;
+  margin-top: 0.5rem;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .admissioninquiry-form-inner {
-      flex-direction: column;
+.loading-message {
+  text-align: center;
+  color: var(--primary-color);
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+.success-message {
+  text-align: center;
+  background-color: #e8f7f0;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--success-color);
+}
+
+.success-message h4 {
+  color: var(--success-color);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.new-inquiry-btn {
+  background-color: var(--success-color);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  margin-top: 1.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.new-inquiry-btn:hover {
+  background-color: #219653;
+}
+
+.privacy-note {
+  font-size: 0.8rem;
+  color: #7f8c8d;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .inquiry-form-container {
+    margin: 1.5rem;
   }
+  
+  .inquiry-info-panel, 
+  .inquiry-form-panel {
+    padding: 2rem;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .inquiry-form-wrapper {
+    flex-direction: column;
+  }
+  
+  .inquiry-info-panel, 
+  .inquiry-form-panel {
+    width: 100%;
+  }
+  
+  .inquiry-title {
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .inquiry-form-container {
+    margin: 1rem;
+    box-shadow: none;
+  }
+  
+  .inquiry-info-panel, 
+  .inquiry-form-panel {
+    padding: 1.5rem;
+  }
+  
+  .inquiry-title {
+    font-size: 1.5rem;
+  }
+  
+  .form-heading {
+    font-size: 1.5rem;
+  }
+  
+  .benefits-list li {
+    font-size: 0.95rem;
+  }
+  
+  .submit-button {
+    padding: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .inquiry-info-panel, 
+  .inquiry-form-panel {
+    padding: 1.2rem;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.7rem;
+  }
+}
+
+/* Animation effects */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.inquiry-form-container {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.success-message {
+  animation: fadeIn 0.5s ease-out;
 }

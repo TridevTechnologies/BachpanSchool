@@ -6,136 +6,63 @@ function FeeStructure() {
   const [isEnrollmentFormOpen, setIsEnrollmentFormOpen] = useState(false);
 
   const feeStructure = [
-    {
-      grade: "Pre-Primary (Nursery - KG)",
-      admissionFee: "₹10,000",
-      termFee: "₹15,000",
-      annualFee: "₹45,000",
-    },
-    {
-      grade: "Primary (Class 1-5)",
-      admissionFee: "₹15,000",
-      termFee: "₹20,000",
-      annualFee: "₹60,000",
-    },
-    {
-      grade: "Middle School (Class 6-8)",
-      admissionFee: "₹20,000",
-      termFee: "₹25,000",
-      annualFee: "₹75,000",
-    },
-    {
-      grade: "Secondary (Class 9-10)",
-      admissionFee: "₹25,000",
-      termFee: "₹30,000",
-      annualFee: "₹90,000",
-    },
-    {
-      grade: "Senior Secondary (Class 11-12)",
-      admissionFee: "₹30,000",
-      termFee: "₹35,000",
-      annualFee: "₹105,000",
-    },
-  ];
-
-  const additionalFees = [
-    {
-      item: "Transportation Fee",
-      description: "Based on distance (₹2,000 - ₹5,000 per month)",
-    },
-    {
-      item: "Computer Lab Fee",
-      description: "₹2,000 per term",
-    },
-    {
-      item: "Science Lab Fee",
-      description: "₹2,500 per term (Class 6 onwards)",
-    },
-    {
-      item: "Sports Fee",
-      description: "₹1,500 per term",
-    },
+    { grade: "P.C.", annualFee: "₹18,000", admissionFee: "₹6,000", feePerInstallment: "₹4,500", siblingDiscount: "₹1,600" },
+    { grade: "Nursery", annualFee: "₹19,600", admissionFee: "₹6,000", feePerInstallment: "₹4,900", siblingDiscount: "₹1,760" },
+    { grade: "K.G.-1", annualFee: "₹20,800", admissionFee: "₹6,000", feePerInstallment: "₹5,200", siblingDiscount: "₹1,880" },
+    { grade: "K.G.-II", annualFee: "₹22,000", admissionFee: "₹6,000", feePerInstallment: "₹5,500", siblingDiscount: "₹2,000" },
+    { grade: "I", annualFee: "₹26,800", admissionFee: "₹6,000", feePerInstallment: "₹6,700", siblingDiscount: "₹2,440" },
+    { grade: "II", annualFee: "₹28,000", admissionFee: "₹6,000", feePerInstallment: "₹7,000", siblingDiscount: "₹2,560" },
+    { grade: "III", annualFee: "₹28,000", admissionFee: "₹6,000", feePerInstallment: "₹7,000", siblingDiscount: "₹2,560" },
+    { grade: "IV", annualFee: "₹28,000", admissionFee: "₹6,000", feePerInstallment: "₹7,000", siblingDiscount: "₹2,560" },
+    { grade: "V", annualFee: "₹29,200", admissionFee: "₹6,000", feePerInstallment: "₹7,300", siblingDiscount: "₹2,680" },
+    { grade: "VI", annualFee: "₹29,200", admissionFee: "₹7,000", feePerInstallment: "₹7,300", siblingDiscount: "₹2,680" },
+    { grade: "VII", annualFee: "₹29,200", admissionFee: "₹7,000", feePerInstallment: "₹7,300", siblingDiscount: "₹2,680" },
+    { grade: "VIII", annualFee: "₹30,000", admissionFee: "₹7,000", feePerInstallment: "₹7,500", siblingDiscount: "₹2,760" },
+    { grade: "IX", annualFee: "₹36,000", admissionFee: "₹7,000", feePerInstallment: "₹9,000", siblingDiscount: "₹3,360" },
+    { grade: "X", annualFee: "₹36,000", admissionFee: "₹7,000", feePerInstallment: "₹9,000", siblingDiscount: "₹3,360" },
   ];
 
   return (
     <div className="fee-structure-page">
-      <EnrollmentForm
-        isOpen={isEnrollmentFormOpen}
-        onClose={() => setIsEnrollmentFormOpen(false)}
-      />
+      <EnrollmentForm isOpen={isEnrollmentFormOpen} onClose={() => setIsEnrollmentFormOpen(false)} />
       
       <div className="fee-header">
         <h1>Fee Structure 2025-26</h1>
-        <p>Investing in your child's future with transparent and competitive fees</p>
+        <p>Transparent and competitive fees for quality education</p>
       </div>
 
       <div className="container">
-        {/* Main Fee Structure Table */}
         <div className="fee-table-container">
           <table className="fee-table">
             <thead>
               <tr>
                 <th>Grade Level</th>
-                <th>Admission Fee</th>
-                <th>Term Fee</th>
                 <th>Annual Fee</th>
+                <th>Admission Fee</th>
+                <th>Fee/Installment</th>
+                <th>Sibling Discount</th>
               </tr>
             </thead>
             <tbody>
               {feeStructure.map((item, index) => (
                 <tr key={index}>
                   <td>{item.grade}</td>
-                  <td>{item.admissionFee}</td>
-                  <td>{item.termFee}</td>
                   <td>{item.annualFee}</td>
+                  <td>{item.admissionFee}</td>
+                  <td>{item.feePerInstallment}</td>
+                  <td>{item.siblingDiscount}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
 
-        {/* Additional Fees Section */}
-        <div className="additional-fees">
-          <h2>Additional Fees</h2>
-          <div className="additional-fees-grid">
-            {additionalFees.map((fee, index) => (
-              <div key={index} className="fee-card">
-                <h3>{fee.item}</h3>
-                <p>{fee.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Fee Policy Section */}
-        <div className="fee-policy">
-          <h2>Fee Policy Highlights</h2>
-          <div className="policy-points">
-            <div className="policy-point">
-              <h3>Payment Schedule</h3>
-              <p>Fees are payable in three terms: April, August, and December</p>
-            </div>
-            <div className="policy-point">
-              <h3>Early Bird Discount</h3>
-              <p>5% discount on term fees if paid within first 10 days</p>
-            </div>
-            <div className="policy-point">
-              <h3>Sibling Discount</h3>
-              <p>10% discount on tuition fee for second child onwards</p>
-            </div>
-          </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className="fee-cta">
-          <h2>Ready to Secure Your Child's Future?</h2>
-          <p>Limited seats available for academic year 2025-26</p>
-          <button 
-            className="enroll-button"
-            onClick={() => setIsEnrollmentFormOpen(true)}
-          >
-            Apply Now
-          </button>
+        <div className="fee-note">
+          <h2>Note:</h2>
+          <p>➤ School fee as per installment (for the given academic session) is to be deposited up to 15th of the month of: April, July, October, and January.</p>
+          <p>➤ Sibling Discount will be given in the last installment of the fee.</p>
+          <p>➤ ICSE Registration fee will be charged separately for Class IX and ICSE Examination Fee will be charged separately for Class X as per Council norms.</p>
+          <p>➤ Late fee will be charged for each installment after given scheduled dates.</p>
         </div>
       </div>
     </div>

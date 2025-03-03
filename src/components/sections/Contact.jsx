@@ -80,8 +80,7 @@ function Contact() {
               <FaPhone className="info-icon" />
               <div className="info-content">
                 <h3>Call Us</h3>
-                <p>+91 9302511111</p>
-                <p>+91 9300110033</p>
+                <p>+91 8450843097</p>
               </div>
             </div>
 
@@ -89,7 +88,7 @@ function Contact() {
               <FaEnvelope className="info-icon" />
               <div className="info-content">
                 <h3>Email Us</h3>
-                <p>info@bachpanheight.edu.in</p>
+                <p>info@bachpandatia.in</p>
               </div>
             </div>
 
@@ -97,22 +96,24 @@ function Contact() {
               <FaMapMarkerAlt className="info-icon" />
               <div className="info-content">
                 <h3>Visit Us</h3>
-                <p>Bachpan Height School</p>
+                <p>Bachpan & Academic Heights Public School</p>
                 <p>Datia, Madhya Pradesh</p>
               </div>
             </div>
 
             <div className="map-container">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14371.825738201266!2d78.4666!3d25.6734!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDQwJzM0LjIiTiA3OMKwMjgnMDAuMCJF!5e0!3m2!1sen!2sin!4v1639930439252!5m2!1sen!2sin"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                title="School Location"
-              ></iframe>
-            </div>
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3596.626693325155!2d78.45839467501601!3d25.650512477421888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3977126cebeb8701%3A0x28bebdbf30b58dbe!2sBachpan...a%20play%20school%2C%20Datia!5e0!3m2!1sen!2sin!4v1740987537012!5m2!1sen!2sin"
+    width="100%"
+    height="450"
+    style={{ border: 0 }}
+    allowFullScreen
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    title="School Location"
+  ></iframe>
+</div>
+
           </div>
 
           <div className="contact-form">

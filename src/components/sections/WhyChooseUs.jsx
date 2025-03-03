@@ -6,46 +6,55 @@ import {
   FaLaptop, 
   FaUsers,
   FaChalkboardTeacher,
-  FaSmile,
-  FaMedal
+  FaShieldAlt,
+  FaBuilding,
+  FaEye
 } from 'react-icons/fa';
 
 function WhyChooseUs() {
   const features = [
     {
       icon: <FaTrophy className="feature-icon" />,
-      title: "Academic Excellence",
-      description: "Consistently achieving outstanding academic results with a 100% success rate",
+      title: "Best ICSE School in Datia",
+      description: "Ranked as the top ICSE-affiliated school in the region.",
     },
     {
       icon: <FaUserGraduate className="feature-icon" />,
-      title: "Experienced Faculty",
-      description: "Highly qualified teachers with years of experience in education",
-    },
-    {
-      icon: <FaLaptop className="feature-icon" />,
-      title: "Smart Classrooms",
-      description: "Modern technology-enabled learning environments",
+      title: "Highly Experienced Faculty",
+      description: "Our team consists of well-qualified, experienced educators.",
     },
     {
       icon: <FaUsers className="feature-icon" />,
-      title: "Small Class Sizes",
-      description: "Personalized attention with optimal teacher-student ratio",
+      title: "Optimal Teacher-Student Ratio",
+      description: "Ensuring personalized attention for each student.",
     },
-  ];
-
-  const stats = [
-    { number: "100%", label: "Pass Rate", icon: <FaMedal /> },
-    { number: "50+", label: "Expert Teachers", icon: <FaChalkboardTeacher /> },
-    { number: "1000+", label: "Happy Students", icon: <FaSmile /> },
-    { number: "25+", label: "Awards Won", icon: <FaTrophy /> },
+    {
+      icon: <FaBuilding className="feature-icon" />,
+      title: "Best-in-Class Infrastructure",
+      description: "State-of-the-art facilities for holistic learning.",
+    },
+    {
+      icon: <FaLaptop className="feature-icon" />,
+      title: "Air-Conditioned Classrooms",
+      description: "Providing a comfortable learning environment.",
+    },
+    {
+      icon: <FaShieldAlt className="feature-icon" />,
+      title: "Safe & Secure Campus",
+      description: "Hygienic, well-maintained, and child-friendly premises.",
+    },
+    {
+      icon: <FaEye className="feature-icon" />,
+      title: "24/7 CCTV Surveillance",
+      description: "Complete safety with round-the-clock monitoring.",
+    }
   ];
 
   return (
     <div className="why-choose-section">
       <div className="container">
         <div className="section-header">
-          <h2>Why Choose Bachpan Height School?</h2>
+          <h2>Why Choose Us?</h2>
           <p>
             We provide an enriching educational environment that nurtures excellence
             and prepares students for future success.
@@ -58,16 +67,6 @@ function WhyChooseUs() {
               <div className="feature-icon-wrapper">{feature.icon}</div>
               <h3>{feature.title}</h3>
               <p>{feature.description}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="stats-grid">
-          {stats.map((stat, index) => (
-            <div key={index} className="stat-card">
-              <div className="stat-icon">{stat.icon}</div>
-              <div className="stat-number">{stat.number}</div>
-              <div className="stat-label">{stat.label}</div>
             </div>
           ))}
         </div>

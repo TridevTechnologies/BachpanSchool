@@ -58,19 +58,21 @@ function ExitModal({ isOpen, onClose }) {
           <div className="exit-modal-header">
             <h2>🌟 Secure Your Child's Future at Bachpan School Datia! 🌟</h2>
             <p className="exit-modal-subhead">
-              Don’t let this opportunity slip away – give your child the best start in life.
+              Don't let this opportunity slip away – give your child the best start in life.
             </p>
           </div>
 
           <div className="exit-modal-pitch">
             <div className="exit-modal-benefits">
-              <h3>Why 5000+ Parents Trust Us:</h3>
+              <h3>Why Choose Us?</h3>
               <ul>
-                <li>🏆 Ranked #1 in Datia for 5 consecutive years</li>
-                <li>📚 CBSE Curriculum with 98% Board Results</li>
-                <li>👩🏫 Experienced Faculty & Personalized Attention</li>
-                <li>🚀 STEM Labs & Smart Class Technology</li>
-                <li>🎨 25+ Extracurricular Activities</li>
+                <li>✔ Ranked as the Best ICSE School in Datia</li>
+                <li>✔ Highly Experienced & Qualified Faculty</li>
+                <li>✔ Optimal Teacher-Student Ratio for Individual Attention</li>
+                <li>✔ Best-in-Class Infrastructure for Holistic Learning</li>
+                <li>✔ Air-Conditioned Classrooms for a Comfortable Learning Environment</li>
+                <li>✔ Safe, Hygienic, and Secure Campus</li>
+                <li>✔ 24/7 CCTV Surveillance for Student Safety</li>
               </ul>
             </div>
 
@@ -106,7 +108,15 @@ function ExitModal({ isOpen, onClose }) {
                   <option value="LKG">LKG</option>
                   <option value="UKG">UKG</option>
                   <option value="Grade 1">Grade 1</option>
-                  {/* Add other grade options as needed */}
+                  <option value="Grade 2">Grade 2</option>
+                  <option value="Grade 3">Grade 3</option>
+                  <option value="Grade 4">Grade 4</option>
+                  <option value="Grade 5">Grade 5</option>
+                  <option value="Grade 6">Grade 6</option>
+                  <option value="Grade 7">Grade 7</option>
+                  <option value="Grade 8">Grade 8</option>
+                  <option value="Grade 9">Grade 9</option>
+                  <option value="Grade 10">Grade 10</option>
                 </select>
               </div>
 
@@ -131,9 +141,9 @@ function ExitModal({ isOpen, onClose }) {
           </div>
 
           <div className="exit-modal-footer">
-            <p>📍 Location: Premium Campus, Datia City Center</p>
+            <p>📍 Location: Ramnagar Colony Behind Diet Office , Datia (M.P)</p>
             <p>
-              📞 Immediate Assistance: <a href="tel:+911234567890">+91 12345 67890</a>
+              📞 Immediate Assistance: <a href="tel:+911234567890">+91 84508 43097</a>
             </p>
           </div>
         </div>

@@ -9,7 +9,7 @@ import {
   FaSchool
 } from 'react-icons/fa';
 import '../styles/EnrollmentProcess.css';
-
+import { useNavigate } from 'react-router-dom';
 const steps = [
   {
     icon: <FaClipboardList className="step-icon" />,
@@ -27,7 +27,7 @@ const steps = [
     icon: <FaCalendarCheck className="step-icon" />,
     title: "Step 3: Entrance Test",
     description:
-      "Appear for the entrance test scheduled on March 23rd, 2025. Test includes core subjects evaluation.",
+      "Appear for the entrance test scheduled on March 19TH, 2025. Test includes core subjects evaluation.",
   },
   {
     icon: <FaUserCheck className="step-icon" />,
@@ -38,6 +38,7 @@ const steps = [
 ];
 
 function EnrollmentProcess() {
+  const navigate = useNavigate();
   return (
     <div className="enrollment-section">
       <div className="container">
@@ -55,11 +56,11 @@ function EnrollmentProcess() {
           <div className="date-card">
             <FaBook className="date-icon" />
             <h3>Entrance Test Date</h3>
-            <p>March 23rd, 2025</p>
+            <p>March 19th, 2025</p>
           </div>
           <div className="date-card">
             <FaSchool className="date-icon" />
-            <h3>Session Begins</h3>
+            <h3>New Session Begins</h3>
             <p>April 1st, 2025</p>
           </div>
         </div>
@@ -77,9 +78,9 @@ function EnrollmentProcess() {
         </div>
 
         <div className="enrollment-cta">
-          <button className="cta-button">
-            Apply Now
-          </button>
+        <button className="cta-button" onClick={() => navigate('/inquiry-form')}>
+      Apply Now
+    </button>
         </div>
       </div>
     </div>

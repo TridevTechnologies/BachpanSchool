@@ -43,7 +43,7 @@ function Gallery() {
       <div className="container">
         <div className="section-header">
           <h2>School Gallery</h2>
-          <p>Glimpses of life at Bachpan Height School</p>
+          <p>Glimpses of life at Bachpan Datia</p>
         </div>
 
         <div className="gallery-tabs">

@@ -4,24 +4,24 @@ import '../styles/AboutUs.css';
 function AboutUs() {
   const milestones = [
     {
-      year: "2010",
-      title: "Foundation",
-      description: "Established with a vision to provide quality education",
+      year: "2013",
+      title: "Bachpan Play School",
+      description: "Began its journey with a pre-school, providing a strong foundation for early learning.",
     },
     {
       year: "2015",
-      title: "Infrastructure Expansion",
-      description: "Added new academic block and modern facilities",
+      title: "Academic Heights Public School",
+      description: "Expanded into a formal school, offering quality education with a focus on holistic development.",
     },
     {
-      year: "2018",
-      title: "Excellence Award",
-      description: "Recognized as one of the top schools in the region",
+      year: "2024",
+      title: "ICSE Affiliation",
+      description: "Achieved a significant milestone by becoming an ICSE-affiliated school.",
     },
     {
-      year: "2020",
-      title: "Digital Integration",
-      description: "Implemented smart classrooms and digital learning",
+      year: "Today",
+      title: "Continued Excellence",
+      description: "Providing quality education, blending innovation, values, and global standards to nurture future leaders.",
     },
   ];
 
@@ -30,23 +30,20 @@ function AboutUs() {
       <div className="container">
         <div className="about-header">
           <h2>Our Story</h2>
-          <p>Building a foundation of excellence in education since 2010</p>
+          <p>Building a foundation of excellence in education since 2013</p>
         </div>
 
         <div className="mission-vision-grid">
           <div className="info-card">
             <h2>Our Mission</h2>
             <p>
-              To provide holistic education that nurtures academic excellence,
-              character development, and life skills, preparing students to become
-              responsible global citizens.
+              To Educate, Empower, and Excel. We strive to nurture the unique potential of every child by providing a safe, supportive, and stimulating learning environment. We aim to foster both academic excellence and social growth, ensuring that every student thrives with confidence and curiosity.
             </p>
           </div>
           <div className="info-card">
             <h2>Our Vision</h2>
             <p>
-              To be a leading educational institution that inspires innovation,
-              fosters creativity, and empowers students to achieve their full potential.
+              To provide world-class quality education in Datia, blending innovation, technology, and values to nurture confident and competent global citizens.
             </p>
           </div>
         </div>

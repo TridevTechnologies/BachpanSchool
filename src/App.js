@@ -4,56 +4,106 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import FeeStructure from './pages/FeeStructure';
-import './App.css';
 import InquiryForm from './components/layout/Form';
 import FullGallery from './components/sections/FullGallery';
 import ExitModal from './components/layout/ExitModal';
+import ScrollToTop from './components/layout/ScrollToTop';
+import './App.css';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [timeoutDuration, setTimeoutDuration] = useState(30000); // Start at 30 sec
-  let modalShowCount = 0; // Keep count within session only
+  const [hasShownModal, setHasShownModal] = useState(false);
+  const [lastActivityTime, setLastActivityTime] = useState(Date.now());
 
   useEffect(() => {
-    // Check if the user is revisiting the site (refresh)
-    const isReturningUser = localStorage.getItem('returningUser');
-
-    if (isReturningUser) {
-      setTimeoutDuration(10000); // If user refreshes, show modal after 10 sec
-    } else {
-      localStorage.setItem('returningUser', 'true'); // Mark user as returning
+    // Track if modal has been shown during this session
+    const modalShown = sessionStorage.getItem('exitModalShown');
+    if (modalShown) {
+      setHasShownModal(true);
     }
 
-    let idleTimer;
-
-    const startIdleTimer = () => {
-      idleTimer = setTimeout(() => {
+    // Show modal when trying to close or reload the page
+    const handleBeforeUnload = (event) => {
+      if (!hasShownModal) {
+        event.preventDefault();
         setIsModalOpen(true);
-        modalShowCount += 1;
-
-        // Set exponential timeout: 30s → 1m → 2m → 4m (Only for current session)
-        if (modalShowCount === 1) setTimeoutDuration(60000); // 1 min
-        else if (modalShowCount === 2) setTimeoutDuration(120000); // 2 min
-        else if (modalShowCount === 3) setTimeoutDuration(240000); // 4 min
-      }, timeoutDuration);
+        setHasShownModal(true);
+        sessionStorage.setItem('exitModalShown', 'true');
+        return (event.returnValue = 'Are you sure you want to leave?');
+      }
     };
 
-    startIdleTimer();
-
-    const resetTimer = () => {
-      clearTimeout(idleTimer);
-      startIdleTimer();
+    const handleMouseLeave = (event) => {
+      if (event.clientY <= 0 && !hasShownModal) {
+        setIsModalOpen(true);
+        setHasShownModal(true);
+        sessionStorage.setItem('exitModalShown', 'true');
+      }
     };
 
-    window.addEventListener('mousemove', resetTimer);
-    window.addEventListener('keydown', resetTimer);
+    const handleTouchMove = (event) => {
+      if (event.touches[0].clientY < 50 && !hasShownModal) {
+        setIsModalOpen(true);
+        setHasShownModal(true);
+        sessionStorage.setItem('exitModalShown', 'true');
+      }
+    };
+
+    const handleUserActivity = () => {
+      setLastActivityTime(Date.now());
+    };
+
+    const inactivityTimer = setInterval(() => {
+      const inactiveTime = Date.now() - lastActivityTime;
+      if (inactiveTime > 120000 && !hasShownModal) {
+        setIsModalOpen(true);
+        setHasShownModal(true);
+        sessionStorage.setItem('exitModalShown', 'true');
+      }
+    }, 30000);
+
+    const handlePopState = () => {
+      if (!hasShownModal) {
+        setIsModalOpen(true);
+        setHasShownModal(true);
+        sessionStorage.setItem('exitModalShown', 'true');
+      }
+    };
+
+    const activityEvents = ['mousedown', 'mousemove', 'keydown', 'scroll', 'touchstart', 'click'];
+    activityEvents.forEach(event => {
+      window.addEventListener(event, handleUserActivity);
+    });
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    document.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('touchmove', handleTouchMove);
+    window.addEventListener('popstate', handlePopState);
 
     return () => {
-      clearTimeout(idleTimer);
-      window.removeEventListener('mousemove', resetTimer);
-      window.removeEventListener('keydown', resetTimer);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('popstate', handlePopState);
+      clearInterval(inactivityTimer);
+
+      activityEvents.forEach(event => {
+        window.removeEventListener(event, handleUserActivity);
+      });
     };
-  }, [timeoutDuration]);
+  }, [hasShownModal, lastActivityTime]);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (!hasShownModal) {
+        setIsModalOpen(true);
+        setHasShownModal(true);
+        sessionStorage.setItem('exitModalShown', 'true');
+      }
+    }, 45000);
+
+    return () => clearTimeout(timeoutId);
+  }, [hasShownModal]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -63,6 +113,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop /> {/* This ensures the page always scrolls to the top on route change */}
       <div className="app">
         <Navbar />
         <main>
