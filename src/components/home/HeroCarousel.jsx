@@ -70,7 +70,7 @@ function HeroCarousel() {
             <img src={image.url} alt={image.alt} />
             <div className="carousel-overlay">
               <div className="carousel-content">
-                <h1>Give Your Child the Best Start at Bachpan Height School</h1>
+                <h1>Give Your Child the Best Start at Bachpan & Academic Heights Public School</h1>
                 <p>Empowering futures with excellence and care</p>
               </div>
             </div>

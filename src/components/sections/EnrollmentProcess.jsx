@@ -51,7 +51,7 @@ function EnrollmentProcess() {
           <div className="date-card">
             <FaClock className="date-icon" />
             <h3>Application Deadline</h3>
-            <p>March 15th, 2025</p>
+            <p>March 17th, 2025</p>
           </div>
           <div className="date-card">
             <FaBook className="date-icon" />

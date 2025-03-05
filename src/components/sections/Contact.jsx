@@ -88,7 +88,7 @@ function Contact() {
               <FaEnvelope className="info-icon" />
               <div className="info-content">
                 <h3>Email Us</h3>
-                <p>info@bachpandatia.in</p>
+                <p> ahps5150@academicheights.in</p>
               </div>
             </div>
 

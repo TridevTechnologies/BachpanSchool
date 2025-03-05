@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect  } from 'react';
 import { scroller } from 'react-scroll';
 import HeroCarousel from '../components/home/HeroCarousel';
 import AboutUs from '../components/sections/AboutUs';
@@ -8,8 +8,9 @@ import Contact from '../components/sections/Contact';
 import EnrollmentProcess from '../components/sections/EnrollmentProcess';
 import EnrollmentForm from '../components/shared/EnrollmentForm';
 import '../components/styles/Home.css';
-
+import { useNavigate } from 'react-router-dom';
 function Home() {
+  const navigate = useNavigate();
   useEffect(() => {
     const hash = window.location.hash.replace('#', '');
     if (hash) {
@@ -62,9 +63,12 @@ function Home() {
         <div className="container">
           <h2>Limited Seats Available for 2025-26</h2>
           <p>Secure your child's future today. Admission test on March 23rd, 2025.</p>
-          <button className="btn btn-secondary">
-            Book a Campus Tour
-          </button>
+          <button 
+      className="btn btn-secondary" 
+      onClick={() => navigate('/inquiry-form')}
+    >
+      Book a Campus Tour
+    </button>
         </div>
       </section>
     </div>

@@ -23,13 +23,11 @@ function Footer() {
             <h3>Bachpan Height Public School</h3>
             <p>Nurturing minds, building futures, and creating leaders of tomorrow through quality education.</p>
             <div className="social-links">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.facebook.com/bachpan.datia/" target="_blank" rel="noopener noreferrer">
                 <FaFacebookF />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                <FaTwitter />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+             
+              <a href="https://www.instagram.com/bachpandatia/" target="_blank" rel="noopener noreferrer">
                 <FaInstagram />
               </a>
             </div>
@@ -62,7 +60,7 @@ function Footer() {
                 <FaPhone /> +91 8450843097
               </p>
               <p>
-                <FaEnvelope /> info@bachpandatia.in
+                <FaEnvelope />  ahps5150@academicheights.in
               </p>
               <p>
                 <FaMapMarkerAlt /> Datia, Madhya Pradesh
@@ -73,7 +71,7 @@ function Footer() {
 
         {/* Copyright */}
         <div className="footer-bottom">
-          <p>&copy; {year} Bachpan Height Public School. All rights reserved.</p>
+          <p>&copy; {year} Bachpan & Academic Heights Public School. All rights reserved.</p>
         </div>
       </div>
     </footer>
