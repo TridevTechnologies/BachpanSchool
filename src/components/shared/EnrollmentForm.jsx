@@ -5,49 +5,72 @@ function EnrollmentForm({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
     studentName: '',
     parentName: '',
-    email: '',
-    phone: '',
+    parentEmail: '',
+    parentPhone: '',
     grade: ''
   });
 
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState(null);
 
   const validateForm = () => {
     const newErrors = {};
+    
     if (!formData.studentName || formData.studentName.length < 2) {
       newErrors.studentName = "Student name must be at least 2 characters";
     }
     if (!formData.parentName || formData.parentName.length < 2) {
       newErrors.parentName = "Parent name must be at least 2 characters";
     }
-    if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email";
+    if (formData.parentEmail && !/\S+@\S+\.\S+/.test(formData.parentEmail)) {
+      newErrors.parentEmail = "Please enter a valid email";
     }
-    if (!formData.phone || formData.phone.length < 10) {
-      newErrors.phone = "Please enter a valid phone number";
+    if (!formData.parentPhone || formData.parentPhone.length < 10) {
+      newErrors.parentPhone = "Please enter a valid phone number";
     }
     if (!formData.grade) {
       newErrors.grade = "Please select a grade";
     }
+
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
     
     if (Object.keys(validationErrors).length === 0) {
-      // TODO: Handle form submission
-      console.log(formData);
-      alert("Application submitted successfully!");
-      setFormData({
-        studentName: '',
-        parentName: '',
-        email: '',
-        phone: '',
-        grade: ''
-      });
-      onClose();
+      setLoading(true);
+      setMessage(null);
+      
+      try {
+        const response = await fetch("https://formcarry.com/s/dfbnDSdivD-", {
+          method: 'POST',
+          headers: { 
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          setMessage({ type: "success", text: "Application submitted successfully!" });
+          setFormData({ studentName: '', parentName: '', parentEmail: '', parentPhone: '', grade: '' });
+          setTimeout(() => {
+            setMessage(null);
+            onClose();
+          }, 2000);
+        } else {
+          setMessage({ type: "error", text: result.message || "Submission failed. Please try again." });
+        }
+      } catch (error) {
+        setMessage({ type: "error", text: "An error occurred. Please try again later." });
+      }
+
+      setLoading(false);
     } else {
       setErrors(validationErrors);
     }
@@ -59,7 +82,7 @@ function EnrollmentForm({ isOpen, onClose }) {
       ...prev,
       [name]: value
     }));
-    // Clear error when user starts typing
+
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -75,6 +98,11 @@ function EnrollmentForm({ isOpen, onClose }) {
       <div className="modal-content">
         <button className="modal-close" onClick={onClose}>&times;</button>
         <h2>Apply Now</h2>
+        {message && (
+          <p className={`message ${message.type === "success" ? "success" : "error"}`}>
+            {message.text}
+          </p>
+        )}
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="studentName">Student's Name</label>
@@ -103,29 +131,29 @@ function EnrollmentForm({ isOpen, onClose }) {
           </div>
 
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="parentEmail">Parent's Email (Optional)</label>
             <input
               type="email"
-              id="email"
-              name="email"
-              value={formData.email}
+              id="parentEmail"
+              name="parentEmail"
+              value={formData.parentEmail}
               onChange={handleChange}
-              placeholder="Enter email address"
+              placeholder="Enter parent's email (optional)"
             />
-            {errors.email && <span className="error">{errors.email}</span>}
+            {errors.parentEmail && <span className="error">{errors.parentEmail}</span>}
           </div>
 
           <div className="form-group">
-            <label htmlFor="phone">Phone Number</label>
+            <label htmlFor="parentPhone">Parent's Phone Number</label>
             <input
               type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
+              id="parentPhone"
+              name="parentPhone"
+              value={formData.parentPhone}
               onChange={handleChange}
-              placeholder="Enter phone number"
+              placeholder="Enter parent's phone number"
             />
-            {errors.phone && <span className="error">{errors.phone}</span>}
+            {errors.parentPhone && <span className="error">{errors.parentPhone}</span>}
           </div>
 
           <div className="form-group">
@@ -137,17 +165,17 @@ function EnrollmentForm({ isOpen, onClose }) {
               onChange={handleChange}
             >
               <option value="">Select Grade</option>
-              {Array.from({ length: 12 }, (_, i) => (
-                <option key={i + 1} value={`Grade ${i + 1}`}>
-                  Grade {i + 1}
+              {["Playgroup", "Nursery", "KG1", "KG2", ...Array.from({ length: 10 }, (_, i) => `Grade ${i + 1}`)].map((grade, index) => (
+                <option key={index} value={grade}>
+                  {grade}
                 </option>
               ))}
             </select>
             {errors.grade && <span className="error">{errors.grade}</span>}
           </div>
 
-          <button type="submit" className="submit-btn">
-            Submit Application
+          <button type="submit" className="submit-btn" disabled={loading}>
+            {loading ? "Submitting..." : "Submit Application"}
           </button>
         </form>
       </div>

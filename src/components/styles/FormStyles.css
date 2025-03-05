@@ -245,6 +245,7 @@
 @media screen and (max-width: 600px) {
   .inquiry-form-container {
     margin: 1rem;
+    margin-top: 80px;
     box-shadow: none;
   }
   

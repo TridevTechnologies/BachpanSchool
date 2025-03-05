@@ -9,6 +9,7 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 20px; /* Prevents modal from touching edges on small screens */
 }
 
 .modal-content {
@@ -22,6 +23,7 @@
   overflow-y: auto;
 }
 
+/* Close Button */
 .modal-close {
   position: absolute;
   top: 1rem;
@@ -33,6 +35,7 @@
   color: var(--text-secondary);
 }
 
+/* Modal Title */
 .modal-content h2 {
   color: var(--primary);
   text-align: center;
@@ -40,6 +43,7 @@
   margin-bottom: 1.5rem;
 }
 
+/* Form Fields */
 .form-group {
   margin-bottom: 1rem;
 }
@@ -67,6 +71,7 @@
   box-shadow: 0 0 0 2px rgba(27, 58, 107, 0.1);
 }
 
+/* Error Message */
 .error {
   color: #dc2626;
   font-size: 0.875rem;
@@ -74,6 +79,7 @@
   display: block;
 }
 
+/* Submit Button */
 .submit-btn {
   width: 100%;
   padding: 0.75rem;
@@ -91,12 +97,47 @@
   background-color: var(--primary-dark);
 }
 
-@media (max-width: 640px) {
+/* ✅ Responsive Fixes for Different Screen Sizes */
+@media (max-width: 1024px) { /* Tablets & Small Laptops */
   .modal-content {
+    width: 80%;
+    padding: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) { /* iPads & Smaller Tablets */
+  .modal-content {
+    width: 85%;
     padding: 1.5rem;
   }
-  
+}
+
+@media (max-width: 640px) { /* Mobile Screens */
+  .modal-overlay {
+    align-items: flex-start; /* Prevents modal from covering navbar */
+    padding-top: 80px; /* Adjusts spacing from navbar */
+  }
+
+  .modal-content {
+    width: 90%;
+    padding: 1.5rem;
+    margin-top: 100px; /* Ensures modal doesn't overlap navbar */
+  }
+
   .form-group {
     margin-bottom: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) { /* Small Mobile Screens */
+  .modal-content {
+    width: 95%;
+    padding: 1.2rem;
+    margin-top: 120px; /* Ensures better spacing from navbar */
+  }
+
+  .submit-btn {
+    padding: 0.65rem;
+    font-size: 0.9rem;
   }
 }

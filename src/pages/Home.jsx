@@ -1,5 +1,6 @@
-import React, { useEffect  } from 'react';
+import React, { useEffect, useState } from 'react';
 import { scroller } from 'react-scroll';
+import { useNavigate } from 'react-router-dom';
 import HeroCarousel from '../components/home/HeroCarousel';
 import AboutUs from '../components/sections/AboutUs';
 import WhyChooseUs from '../components/sections/WhyChooseUs';
@@ -8,9 +9,11 @@ import Contact from '../components/sections/Contact';
 import EnrollmentProcess from '../components/sections/EnrollmentProcess';
 import EnrollmentForm from '../components/shared/EnrollmentForm';
 import '../components/styles/Home.css';
-import { useNavigate } from 'react-router-dom';
+
 function Home() {
   const navigate = useNavigate();
+  const [isEnrollmentOpen, setEnrollmentOpen] = useState(false);
+
   useEffect(() => {
     const hash = window.location.hash.replace('#', '');
     if (hash) {
@@ -20,25 +23,23 @@ function Home() {
         duration: 500,
       });
     } else {
-      // If no hash is present, scroll to the top.
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, []);
 
   return (
     <div className="home" id="top">
-      <EnrollmentForm isOpen={false} onClose={() => {}} />
-      
+      <EnrollmentForm isOpen={isEnrollmentOpen} onClose={() => setEnrollmentOpen(false)} />
+
       <section className="hero-section">
         <HeroCarousel />
         <div className="hero-cta">
-          <button className="btn btn-secondary" onClick={()=> window.location.href = '/inquiry-form'}>
+          <button className="btn btn-secondary" onClick={() => setEnrollmentOpen(true)}>
             Apply Now
           </button>
         </div>
       </section>
 
-      {/* Make sure each section has an ID that matches your navbar hashes */}
       <section id="about" className="section">
         <AboutUs />
       </section>
@@ -63,12 +64,9 @@ function Home() {
         <div className="container">
           <h2>Limited Seats Available for 2025-26</h2>
           <p>Secure your child's future today. Admission test on March 23rd, 2025.</p>
-          <button 
-      className="btn btn-secondary" 
-      onClick={() => navigate('/inquiry-form')}
-    >
-      Book a Campus Tour
-    </button>
+          <button className="btn btn-secondary" onClick={() => setEnrollmentOpen(true)}>
+            Book a Campus Tour
+          </button>
         </div>
       </section>
     </div>

@@ -4,7 +4,6 @@ import LazyLoad from "react-lazy-load";
 import { motion } from "framer-motion";
 import "../styles/FullGallery.css";
 
-
 const PRIVATE_API_KEY = "private_jM8qtJZ+GzAwkea1dpucoPMaCC4="; // ⚠️ Exposed Key (Not Secure)
 const GALLERY_CATEGORIES = [
   { id: "campus", label: "Campus", path: "Gallery/Campus" },
@@ -30,7 +29,7 @@ function FullGallery() {
         if (Array.isArray(data)) {
           setImages(data.map((file) => ({
             url: file.url,
-            caption: file.name,
+            caption: file.name.replace(/\.[^/.]+$/, ""), // Remove file extension
           })));
         }
         setLoading(false);
@@ -46,14 +45,14 @@ function FullGallery() {
       className="full-gallery-section"
       initial={{ opacity: 0 }} 
       animate={{ opacity: 1 }} 
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.5 }}
     >
       <div className="container">
-        <div className="header" style={{ justifyContent: "center", marginTop: "3rem" }}>
+        <div className="header">
           <motion.h2 
             initial={{ y: -20, opacity: 0 }} 
             animate={{ y: 0, opacity: 1 }} 
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
           >
             {GALLERY_CATEGORIES.find(cat => cat.id === activeCategory).label} Gallery
           </motion.h2>
@@ -65,14 +64,23 @@ function FullGallery() {
               key={category.id}
               className={`tab-button ${activeCategory === category.id ? "active" : ""}`}
               onClick={() => setActiveCategory(category.id)}
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               {category.label}
             </motion.button>
           ))}
         </div>
 
-        <div className="gallery-grid" style={{ display: "grid", gridTemplateColumns: images.length === 1 ? "1fr" : "repeat(auto-fit, minmax(250px, 1fr))", justifyItems: "center" }}>
+        <div 
+          className="gallery-grid" 
+          style={{ 
+            gridTemplateColumns: images.length === 1 
+              ? "1fr" 
+              : "repeat(auto-fit, minmax(160px, 1fr))",
+            gap: images.length === 1 ? "1rem" : "0.75rem"
+          }}
+        >
           {loading
             ? [...Array(6)].map((_, index) => (
                 <motion.div 
@@ -80,7 +88,7 @@ function FullGallery() {
                   className="skeleton"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 1 }}
+                  transition={{ duration: 0.5 }}
                 ></motion.div>
               ))
             : images.map((image, index) => (
@@ -90,13 +98,24 @@ function FullGallery() {
                   onClick={() => setSelectedImage(image)}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  style={{ width: images.length === 1 ? "300px" : "100%", aspectRatio: "1 / 1" }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
                 >
-                  <LazyLoad height={200} offset={100}>
-                    <img src={image.url} alt={image.caption} style={{ objectFit: "cover" }} />
+                  <LazyLoad height="100%" offset={100}>
+                    <img 
+                      src={image.url} 
+                      alt={image.caption} 
+                      style={{ 
+                        width: "100%", 
+                        height: "100%", 
+                        objectFit: "cover" 
+                      }} 
+                    />
                   </LazyLoad>
-                  <div className="image-caption">{image.caption}</div>
+                  <div className="image-caption">
+                    {image.caption.length > 20 
+                      ? `${image.caption.slice(0, 20)}...` 
+                      : image.caption}
+                  </div>
                 </motion.div>
               ))
           }
@@ -108,15 +127,23 @@ function FullGallery() {
             onClick={() => setSelectedImage(null)}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.3 }}
           >
             <motion.div 
               className="modal-content"
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
+              onClick={(e) => e.stopPropagation()}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.3 }}
             >
-              <img src={selectedImage.url} alt={selectedImage.caption} />
-              <p>{selectedImage.caption}</p>
+              <img 
+                src={selectedImage.url} 
+                alt={selectedImage.caption} 
+                className="modal-image"
+              />
+              <div className="modal-caption">
+                {selectedImage.caption}
+              </div>
             </motion.div>
           </motion.div>
         )}
