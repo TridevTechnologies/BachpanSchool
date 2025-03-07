@@ -20,7 +20,7 @@ function Footer() {
         <div className="footer-grid">
           {/* School Info */}
           <div className="footer-section">
-            <h3>Bachpan Height Public School</h3>
+            <h3> Bachpan & Academic Heights Public School. All rights reserved</h3>
             <p>Nurturing minds, building futures, and creating leaders of tomorrow through quality education.</p>
             <div className="social-links">
               <a href="https://www.facebook.com/bachpan.datia/" target="_blank" rel="noopener noreferrer">
