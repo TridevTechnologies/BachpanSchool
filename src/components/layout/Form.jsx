@@ -145,7 +145,7 @@ export default function InquiryForm() {
                   required
                 >
                   <option value="">Select Grade</option>
-                  <option value="P.C.">P.C.</option>
+                  <option value="P.C.">Playgroup</option>
                   <option value="Nursery">Nursery</option>
                   <option value="K.G.-1">K.G.-1</option>
                   <option value="K.G.-II">K.G.-II</option>

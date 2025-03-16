@@ -1,6 +1,6 @@
 .hero-carousel {
   position: relative;
-  height: 600px;
+  height: 650px; /* Reduced height for better visibility */
   overflow: hidden;
 }
 
@@ -28,41 +28,45 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center; /* Ensures image is centered properly */
 }
 
+/* Dark Overlay for Readability */
 .carousel-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)); 
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+/* Content Box */
 .carousel-content {
   text-align: center;
   color: white;
-  padding: 2rem;
-  max-width: 800px;
+  padding: 1rem;
+  max-width: 550px;
 }
 
 .carousel-content h1 {
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
+  font-size: 2rem; /* Reduced for balance */
+  font-weight: 600;
+  margin-bottom: 0.6rem;
 }
 
 .carousel-content p {
-  font-size: 1.5rem;
-  opacity: 0.9;
+  font-size: 1rem; /* Reduced for a cleaner look */
+  opacity: 0.85;
 }
 
+/* Navigation Dots */
 .carousel-dots {
   position: absolute;
-  bottom: 2rem;
+  bottom: 1.5rem; /* Adjusted for new height */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -70,8 +74,8 @@
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.5);
   border: none;
@@ -83,12 +87,17 @@
   background: white;
 }
 
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
-  .carousel-content h1 {
-    font-size: 2rem;
+  .hero-carousel {
+    height: 350px; /* Further reduced height on smaller screens */
   }
-  
+
+  .carousel-content h1 {
+    font-size: 1.6rem;
+  }
+
   .carousel-content p {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
   }
 }

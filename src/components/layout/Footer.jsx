@@ -7,7 +7,8 @@ import {
   FaInstagram, 
   FaPhone, 
   FaEnvelope, 
-  FaMapMarkerAlt 
+  FaMapMarkerAlt, 
+  FaYoutube
 } from 'react-icons/fa';
 import '../styles/Footer.css';
 
@@ -29,6 +30,9 @@ function Footer() {
              
               <a href="https://www.instagram.com/bachpandatia/" target="_blank" rel="noopener noreferrer">
                 <FaInstagram />
+              </a>
+              <a href="https://www.youtube.com/@bachpanahpsdatia7936" target="_blank" rel="noopener noreferrer">
+                <FaYoutube />
               </a>
             </div>
           </div>
