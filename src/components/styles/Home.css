@@ -1,3 +1,4 @@
+/* Base styles */
 .home {
   min-height: 100vh;
 }
@@ -6,7 +7,65 @@
 .hero-section {
   position: relative;
   height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
+
+.hero-cta {
+  position: absolute;
+  bottom: 15%; /* Moved up from bottom 2rem */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+/* Carousel styles */
+.carousel-container {
+  height: 100%;
+  overflow: hidden;
+}
+
+.carousel-item {
+  height: 100%;
+}
+
+.carousel-item img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* Section Backgrounds */
+.bg-light {
+  background-color: var(--background-light);
+}
+
+/* Generic section styling */
+.section {
+  padding: 4rem 0;
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* CTA Section */
+.cta-section {
+  background-color: var(--primary);
+  color: var(--text-light);
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
 /* Floating Buttons */
 .floating-buttons {
   position: fixed;
@@ -20,7 +79,7 @@
 
 /* Floating Button Base Styles */
 .floating-buttons a {
-  width: 60px;  /* Increased size */
+  width: 60px;
   height: 60px;
   border-radius: 50%;
   display: flex;
@@ -35,14 +94,14 @@
 
 /* Icon Style */
 .float-icon {
-  font-size: 2rem;  /* Increased size */
+  font-size: 2rem;
   color: white;
 }
 
 /* WhatsApp Button */
 .whatsapp-float {
   background-color: #25d366;
-  border: 3px solid #128c7e;  /* Added border */
+  border: 3px solid #128c7e;
 }
 
 .whatsapp-float:hover {
@@ -54,7 +113,7 @@
 /* Call Button */
 .call-float {
   background-color: #007bff;
-  border: 3px solid #0056b3;  /* Added border */
+  border: 3px solid #0056b3;
 }
 
 .call-float:hover {
@@ -85,39 +144,6 @@
   left: -120%;
 }
 
-
-.hero-cta {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-}
-
-/* Section Backgrounds */
-.bg-light {
-  background-color: var(--background-light);
-}
-
-/* CTA Section */
-.cta-section {
-  background-color: var(--primary);
-  color: var(--text-light);
-  padding: 4rem 0;
-  text-align: center;
-}
-
-.cta-section h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-}
-
-.cta-section p {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
-  opacity: 0.9;
-}
-
 /* Animation for elements */
 @keyframes fadeIn {
   from {
@@ -130,6 +156,72 @@
   }
 }
 
-.section {
-  animation: fadeIn 0.8s ease-out;
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .hero-section {
+    height: 500px;
+  }
+  
+  .section {
+    padding: 3rem 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 450px;
+    padding-top: 60px; /* Add padding for navbar */
+  }
+  
+  .hero-cta {
+    bottom: 10%;
+  }
+  
+  .carousel-container {
+    margin-top: 0; /* Adjusted for navbar padding */
+  }
+  
+  .section {
+    padding: 2.5rem 0;
+  }
+  
+  .cta-section h2 {
+    font-size: 1.75rem;
+  }
+  
+  .cta-section p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    height: 400px;
+    padding-top: 70px; /* Increase padding for navbar */
+  }
+  
+  .section {
+    padding: 2rem 0;
+  }
+  
+  .floating-buttons a {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .float-icon {
+    font-size: 1.5rem;
+  }
+  
+  .cta-section {
+    padding: 3rem 0;
+  }
+  
+  .cta-section h2 {
+    font-size: 1.5rem;
+  }
+  
+  .cta-section p {
+    font-size: 1rem;
+  }
 }

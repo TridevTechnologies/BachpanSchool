@@ -161,19 +161,7 @@ function Navbar() {
         </div>
 
         <div className="mobile-controls">
-          {/* Social Media Links in Mobile Header */}
-          <div className="social-links mobile-header">
-            <a href="https://www.facebook.com/bachpan.datia/" target="_blank" rel="noopener noreferrer">
-              <FaFacebookF />
-            </a>
-            <a href="https://www.instagram.com/bachpandatia/" target="_blank" rel="noopener noreferrer">
-              <FaInstagram />
-            </a>
-            <a href="https://www.youtube.com/@bachpanahpsdatia7936" target="_blank" rel="noopener noreferrer">
-              <FaYoutube />
-            </a>
-          </div>
-          
+          {/* Removed social media links from mobile header */}
           <button 
             className="mobile-menu-button" 
             onClick={() => setIsOpen(!isOpen)}
@@ -190,6 +178,19 @@ function Navbar() {
                 {renderNavLink(item)}
               </div>
             ))}
+            
+            {/* Social Media Links in Mobile Sidebar */}
+            <div className="social-links mobile-sidebar">
+              <a href="https://www.facebook.com/bachpan.datia/" target="_blank" rel="noopener noreferrer">
+                <FaFacebookF />
+              </a>
+              <a href="https://www.instagram.com/bachpandatia/" target="_blank" rel="noopener noreferrer">
+                <FaInstagram />
+              </a>
+              <a href="https://www.youtube.com/@bachpanahpsdatia7936" target="_blank" rel="noopener noreferrer">
+                <FaYoutube />
+              </a>
+            </div>
             
             <button 
               className="apply-button mobile" 
