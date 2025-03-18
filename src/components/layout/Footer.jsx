@@ -8,7 +8,8 @@ import {
   FaPhone, 
   FaEnvelope, 
   FaMapMarkerAlt, 
-  FaYoutube
+  FaYoutube,
+  FaWhatsapp
 } from 'react-icons/fa';
 import '../styles/Footer.css';
 
@@ -60,8 +61,11 @@ function Footer() {
           <div className="footer-section">
             <h3>Contact Us</h3>
             <div className="contact-info">
+            <p>
+                <FaPhone /> +91 7000564446
+              </p>
               <p>
-                <FaPhone /> +91 8450843097
+                <FaWhatsapp /> +91 8450843097
               </p>
               <p>
                 <FaEnvelope />  ahps5150@academicheights.in

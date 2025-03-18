@@ -17,28 +17,42 @@ const NAV_ITEMS = [
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(window.scrollY);
+  const [isHidden, setIsHidden] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-      if (window.scrollY > lastScrollY) {
-        document.querySelector(".navbar").classList.add("hide");
+      const currentScrollY = window.scrollY;
+      
+      // Set scrolled state for styling
+      setIsScrolled(currentScrollY > 50);
+      
+      // Hide/show navbar based on scroll direction
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsHidden(true);
       } else {
-        document.querySelector(".navbar").classList.remove("hide");
+        setIsHidden(false);
       }
-      setLastScrollY(window.scrollY);
+      
+      setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
+  // Close mobile menu when changing routes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
+
   const renderNavLink = (item) => {
     const currentPath = location.pathname;
-    const activeClass = currentPath === item.path ? "active" : "";
-    const className = `nav-link ${activeClass}`;
+    const isActive = currentPath === item.path || 
+                    (currentPath === "/" && item.isScroll) ||
+                    (currentPath.includes(`#${item.path}`));
+    const className = `nav-link ${isActive ? "active" : ""}`;
   
     if (item.label === "Home") {
       return (
@@ -47,11 +61,10 @@ function Navbar() {
           className={className}
           onClick={(e) => {
             if (currentPath === "/") {
-              e.preventDefault(); // Stop full reload
+              e.preventDefault();
               scroll.scrollToTop({ duration: 600, smooth: "easeInOutQuad" });
-            } else {
-              setIsOpen(false);
             }
+            setIsOpen(false);
           }}
         >
           {item.label}
@@ -88,21 +101,34 @@ function Navbar() {
     }
   
     return (
-      <Link to={item.path} className={className} onClick={() => setIsOpen(false)}>
+      <Link 
+        to={item.path} 
+        className={className} 
+        onClick={() => setIsOpen(false)}
+      >
         {item.label}
       </Link>
     );
   };
 
   return (
-    <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
+    <nav className={`navbar ${isScrolled ? "scrolled" : ""} ${isHidden ? "hide" : ""}`}>
       <div className="navbar-container">
         <div className="brand-social-wrapper">
-          <Link to="/" className="navbar-brand" onClick={() => scroll.scrollToTop()}>
-            Bachpan School
+          <Link 
+            to="/" 
+            className="navbar-brand" 
+            onClick={() => {
+              if (location.pathname === "/") {
+                scroll.scrollToTop();
+              }
+              setIsOpen(false);
+            }}
+          >
+            Bachpan|AHPS School
           </Link>
           
-          {/* Social Media Links in Desktop View - Moved next to brand */}
+          {/* Social Media Links in Desktop View */}
           <div className="social-links desktop">
             <a href="https://www.facebook.com/bachpan.datia/" target="_blank" rel="noopener noreferrer">
               <FaFacebookF />
@@ -123,7 +149,13 @@ function Navbar() {
             </div>
           ))}
           
-          <button className="apply-button" onClick={() => window.location.href = '/inquiry-form'}>
+          <button 
+            className="apply-button" 
+            onClick={() => {
+              window.location.href = '/inquiry-form';
+              setIsOpen(false);
+            }}
+          >
             Apply Now
           </button>
         </div>
@@ -142,7 +174,11 @@ function Navbar() {
             </a>
           </div>
           
-          <button className="mobile-menu-button" onClick={() => setIsOpen(!isOpen)}>
+          <button 
+            className="mobile-menu-button" 
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle navigation menu"
+          >
             {isOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
@@ -155,7 +191,13 @@ function Navbar() {
               </div>
             ))}
             
-            <button className="apply-button mobile" onClick={() => window.location.href = '/inquiry-form'}>
+            <button 
+              className="apply-button mobile" 
+              onClick={() => {
+                window.location.href = '/inquiry-form';
+                setIsOpen(false);
+              }}
+            >
               Apply Now
             </button>
           </div>

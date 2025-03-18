@@ -7,6 +7,84 @@
   position: relative;
   height: 600px;
 }
+/* Floating Buttons */
+.floating-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 1000;
+}
+
+/* Floating Button Base Styles */
+.floating-buttons a {
+  width: 60px;  /* Increased size */
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Icon Style */
+.float-icon {
+  font-size: 2rem;  /* Increased size */
+  color: white;
+}
+
+/* WhatsApp Button */
+.whatsapp-float {
+  background-color: #25d366;
+  border: 3px solid #128c7e;  /* Added border */
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 14px rgba(37, 211, 102, 0.4);
+  background-color: #128c7e;
+}
+
+/* Call Button */
+.call-float {
+  background-color: #007bff;
+  border: 3px solid #0056b3;  /* Added border */
+}
+
+.call-float:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 14px rgba(0, 123, 255, 0.4);
+  background-color: #0056b3;
+}
+
+/* Tooltip Effect */
+.floating-buttons a::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 50%;
+  left: -110%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+.floating-buttons a:hover::after {
+  opacity: 1;
+  left: -120%;
+}
+
 
 .hero-cta {
   position: absolute;

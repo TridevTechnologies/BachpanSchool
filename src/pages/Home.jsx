@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { scroller } from 'react-scroll';
-import { useNavigate } from 'react-router-dom';
-import HeroCarousel from '../components/home/HeroCarousel';
-import AboutUs from '../components/sections/AboutUs';
-import WhyChooseUs from '../components/sections/WhyChooseUs';
-import Gallery from '../components/sections/Gallery';
-import Contact from '../components/sections/Contact';
-import EnrollmentProcess from '../components/sections/EnrollmentProcess';
-import EnrollmentForm from '../components/shared/EnrollmentForm';
-import '../components/styles/Home.css';
+import React, { useEffect, useState } from "react";
+import { scroller } from "react-scroll";
+import { useNavigate } from "react-router-dom";
+import { FaWhatsapp, FaPhoneAlt } from "react-icons/fa";
+import HeroCarousel from "../components/home/HeroCarousel";
+import AboutUs from "../components/sections/AboutUs";
+import WhyChooseUs from "../components/sections/WhyChooseUs";
+import Gallery from "../components/sections/Gallery";
+import Contact from "../components/sections/Contact";
+import EnrollmentProcess from "../components/sections/EnrollmentProcess";
+import EnrollmentForm from "../components/shared/EnrollmentForm";
+import "../components/styles/Home.css";
 
 function Home() {
   const navigate = useNavigate();
   const [isEnrollmentOpen, setEnrollmentOpen] = useState(false);
 
   useEffect(() => {
-    const hash = window.location.hash.replace('#', '');
+    const hash = window.location.hash.replace("#", "");
     if (hash) {
       scroller.scrollTo(hash, {
         smooth: true,
@@ -23,7 +24,7 @@ function Home() {
         duration: 500,
       });
     } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, []);
 
@@ -69,6 +70,16 @@ function Home() {
           </button>
         </div>
       </section>
+
+      {/* Floating WhatsApp & Call Buttons */}
+      <div className="floating-buttons">
+        <a href="https://wa.me/918450843097" target="_blank" rel="noopener noreferrer" className="whatsapp-float">
+          <FaWhatsapp className="float-icon whatsapp-icon" />
+        </a>
+        <a href="tel:+917000564446" className="call-float">
+          <FaPhoneAlt className="float-icon call-icon" />
+        </a>
+      </div>
     </div>
   );
 }

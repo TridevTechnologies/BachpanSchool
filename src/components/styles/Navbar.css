@@ -1,25 +1,26 @@
 .navbar {
-  background-color: rgba(255, 255, 255, 0.6); /* semi-transparent background */
-  backdrop-filter: blur(10px);              /* blur effect */
-  -webkit-backdrop-filter: blur(10px);        /* for Safari */
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
-  padding: 1rem 0;
+  padding: 0.75rem 0;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 /* Brand and social media wrapper */
 .brand-social-wrapper {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 10px; /* Reduced gap */
 }
 
 .social-links {
   display: flex;
-  gap: 15px;
+  gap: 12px; /* Reduced gap */
   align-items: center;
 }
 
@@ -44,8 +45,8 @@
 /* Mobile header social links */
 .social-links.mobile-header {
   display: flex;
-  gap: 12px;
-  margin-right: 15px;
+  gap: 10px;
+  margin-right: 10px;
 }
 
 /* Mobile bottom social links - removed */
@@ -70,7 +71,7 @@
 .navbar-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 0.5rem; /* Reduced padding */
   height: 4rem;
   display: flex;
   align-items: center;
@@ -82,19 +83,33 @@
   font-weight: bold;
   color: var(--primary);
   text-decoration: none;
+  white-space: nowrap;
+  padding-left: 0; /* Ensure no extra padding */
 }
 
 .nav-menu.desktop {
   display: none;
 }
 
+.nav-menu {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item {
+  width: auto;
+  white-space: nowrap;
+}
+
 .nav-link {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem; /* Reduced horizontal padding */
   color: var(--text-secondary);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
   cursor: pointer;
+  white-space: nowrap;
+  display: block;
 }
 
 .nav-link:hover,
@@ -103,7 +118,7 @@
 }
 
 .apply-button {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem; /* Reduced padding */
   background-color: var(--primary);
   color: white;
   border: none;
@@ -111,6 +126,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  white-space: nowrap;
 }
 
 .apply-button:hover {
@@ -137,9 +153,10 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  z-index: 999;
 }
 
-.nav-item {
+.nav-menu.mobile .nav-item {
   width: 100%;
 }
 
@@ -164,7 +181,7 @@
   .nav-menu.desktop {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem; /* Reduced gap */
   }
 
   .nav-menu.mobile {
@@ -173,5 +190,36 @@
   
   .mobile-controls {
     display: none;
+  }
+  
+  .navbar-container {
+    justify-content: space-between;
+    padding: 0 0.75rem; /* Slightly increased from mobile */
+  }
+}
+
+/* For larger screens to prevent menu wrapping */
+@media (min-width: 992px) {
+  .navbar-container {
+    padding: 0 1rem; /* Reduced from 2rem */
+  }
+  
+  .nav-menu.desktop {
+    gap: 0.75rem; /* Reduced from 1.5rem */
+  }
+  
+  .nav-link {
+    padding: 0.5rem 0.75rem; /* Consistent padding */
+  }
+}
+
+/* For extra large screens */
+@media (min-width: 1200px) {
+  .navbar-container {
+    padding: 0 1.5rem; /* Reduced from 3rem */
+  }
+  
+  .nav-menu.desktop {
+    gap: 1rem;
   }
 }

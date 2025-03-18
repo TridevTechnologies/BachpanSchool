@@ -80,7 +80,7 @@ function Contact() {
               <FaPhone className="info-icon" />
               <div className="info-content">
                 <h3>Call Us</h3>
-                <p>+91 8450843097</p>
+                <p>+91 7000564446</p>
               </div>
             </div>
 
