@@ -200,6 +200,10 @@
     padding-top: 70px; /* Increase padding for navbar */
   }
   
+  .hero-cta {
+    bottom: 20px; /* Fixed distance from bottom instead of percentage */
+  }
+  
   .section {
     padding: 2rem 0;
   }
@@ -223,5 +227,68 @@
   
   .cta-section p {
     font-size: 1rem;
+  }
+}
+
+/* Extra small device adjustments */
+@media (max-width: 375px) {
+  .hero-section {
+    height: 350px;
+    padding-top: 60px;
+  }
+  
+  .hero-cta {
+    bottom: 40px; /* Move button up further on very small screens */
+  }
+  
+  /* Ensure text doesn't overflow */
+  .hero-section h1 {
+    font-size: 1.5rem;
+  }
+  
+  .hero-section p {
+    font-size: 0.9rem;
+  }
+  
+  /* Adjust button size if needed */
+  .hero-cta .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Make floating buttons smaller */
+  .floating-buttons a {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .float-icon {
+    font-size: 1.3rem;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 320px) {
+  .hero-section {
+    height: 300px;
+  }
+  
+  .hero-cta {
+    bottom: 20px;
+  }
+  
+  .floating-buttons {
+    bottom: 15px;
+    right: 15px;
+    gap: 10px;
+  }
+  
+  .floating-buttons a {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .float-icon {
+    font-size: 1.2rem;
   }
 }
