@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Gallery.css";
 
-
 const PRIVATE_API_KEY = "private_jM8qtJZ+GzAwkea1dpucoPMaCC4=";
 const GALLERY_CATEGORIES = [
   { id: "campus", label: "Campus", path: "Gallery/Campus" },
@@ -27,9 +26,9 @@ function Gallery() {
           if (Array.isArray(data)) {
             setImages((prev) => ({
               ...prev,
-              [category.id]: data.slice(0, 3).map((file) => ({
+              [category.id]: data.slice(0, 4).map((file) => ({
                 url: file.url,
-                caption: file.name,
+                caption: file.name.replace(/\.[^/.]+$/, ""), // Remove file extension
               })),
             }));
           }
@@ -37,6 +36,34 @@ function Gallery() {
         .catch((err) => console.error(`Error fetching ${category.label}:`, err));
     });
   }, []);
+
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const handleModalClose = () => {
+    setSelectedImage(null);
+    document.body.style.overflow = 'unset';
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Escape') {
+      handleModalClose();
+    }
+  };
+
+  useEffect(() => {
+    if (selectedImage) {
+      document.addEventListener('keydown', handleKeyPress);
+    } else {
+      document.removeEventListener('keydown', handleKeyPress);
+    }
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedImage]);
 
   return (
     <div className="gallery-section">
@@ -60,7 +87,11 @@ function Gallery() {
 
         <div className="gallery-grid">
           {(images[activeCategory] || []).map((image, index) => (
-            <div key={index} className="gallery-item" onClick={() => setSelectedImage(image)}>
+            <div 
+              key={index} 
+              className="gallery-item" 
+              onClick={() => handleImageClick(image)}
+            >
               <img src={image.url} alt={image.caption} />
               <div className="image-caption">
                 <p>{image.caption}</p>
@@ -69,13 +100,26 @@ function Gallery() {
           ))}
         </div>
 
-        <button className="view-all-button" onClick={() => navigate("/full-gallery")}>View All Images</button>
+        <button className="view-all-button" onClick={() => navigate("/full-gallery")}>
+          View All Images
+        </button>
 
         {selectedImage && (
-          <div className="image-modal" onClick={() => setSelectedImage(null)}>
-            <div className="modal-content">
-              <img src={selectedImage.url} alt={selectedImage.caption} />
-              <p>{selectedImage.caption}</p>
+          <div 
+            className={`image-modal active`}
+            onClick={handleModalClose}
+          >
+            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+              <button className="modal-close" onClick={handleModalClose}>&times;</button>
+              <img 
+                src={selectedImage.url} 
+                alt={selectedImage.caption} 
+                className="modal-image"
+                style={{ objectFit: 'contain' }}
+              />
+              <div className="modal-caption">
+                {selectedImage.caption}
+              </div>
             </div>
           </div>
         )}

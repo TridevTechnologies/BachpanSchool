@@ -34,11 +34,7 @@ function Home() {
 
       <section className="hero-section">
         <HeroCarousel />
-        <div className="hero-cta">
-          <button className="btn btn-secondary" onClick={() => setEnrollmentOpen(true)}>
-            Apply Now
-          </button>
-        </div>
+        
       </section>
 
       <section id="about" className="section">

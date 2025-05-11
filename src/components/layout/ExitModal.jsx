@@ -104,7 +104,7 @@ function ExitModal({ isOpen, onClose }) {
                   required
                 >
                   <option value="">Select Grade *</option>
-                  <option value="Pre-Nursery">Pre-Nursery</option>
+                  <option value="PlayGroup">PlayGroup</option>
                   <option value="LKG">LKG</option>
                   <option value="UKG">UKG</option>
                   <option value="Grade 1">Grade 1</option>

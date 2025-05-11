@@ -1,13 +1,16 @@
-.hero-carousel {
-  position: relative;
-  height: 650px; /* Reduced height for better visibility */
-  overflow: hidden;
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--background-light);
 }
 
-.carousel-container {
+/* Image Carousel Container */
+.hero-image-container {
   position: relative;
-  height: 100%;
-  width: 100%;
+  height: 60vh;
+  min-height: 400px;
+  overflow: hidden;
 }
 
 .carousel-slide {
@@ -28,76 +31,288 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center; /* Ensures image is centered properly */
+  object-position: center;
 }
 
-/* Dark Overlay for Readability */
-.carousel-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)); 
+/* Text Content Container */
+.hero-text-container {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 3rem 1rem;
+  background-color: white;
 }
 
-/* Content Box */
-.carousel-content {
+.hero-text-content {
+  max-width: 1200px;
+  width: 100%;
   text-align: center;
+  padding: 0 2rem;
+}
+
+.hero-text-content h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.hero-text-content p {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.apply-now-btn {
+  background-color: var(--secondary);
   color: white;
-  padding: 1rem;
-  max-width: 550px;
-}
-
-.carousel-content h1 {
-  font-size: 2rem; /* Reduced for balance */
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 4px;
   font-weight: 600;
-  margin-bottom: 0.6rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.carousel-content p {
-  font-size: 1rem; /* Reduced for a cleaner look */
-  opacity: 0.85;
+.apply-now-btn:hover {
+  background-color: var(--secondary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Navigation Dots */
 .carousel-dots {
   position: absolute;
-  bottom: 1.5rem; /* Adjusted for new height */
+  bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   gap: 0.5rem;
+  z-index: 10;
 }
 
 .dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.5);
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .dot.active {
   background: white;
+  transform: scale(1.2);
 }
 
-/* Mobile Responsiveness */
+/* Loading and Error States */
+.hero-carousel-loading,
+.hero-carousel-error {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background-light);
+  color: var(--text-primary);
+  font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (min-width: 769px) {
+  .hero-section {
+    flex-direction: column;
+    min-height: 80vh;
+  }
+
+  .hero-image-container {
+    height: 80vh;
+    min-height: 600px;
+  }
+
+  .hero-text-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+    padding: 1.5rem;
+    z-index: 2;
+  }
+
+  .hero-text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .hero-text-content h1 {
+    color: white;
+    font-size: 2.2rem;
+    margin: 0;
+    text-align: center;
+    white-space: nowrap;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: -0.5px;
+  }
+
+  .hero-text-content p {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    text-align: center;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  .apply-now-btn {
+    margin-top: 1rem;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  .carousel-dots {
+    bottom: 5rem; /* Increased space from bottom */
+  }
+}
+
+@media (max-width: 1200px) {
+  .hero-text-content h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-text-content p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero-image-container {
+    height: 70vh;
+  }
+
+  .hero-text-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-text-content p {
+    font-size: 1rem;
+  }
+
+  .carousel-dots {
+    bottom: 4rem; /* Adjusted for smaller screens */
+  }
+}
+
 @media (max-width: 768px) {
-  .hero-carousel {
-    height: 350px; /* Further reduced height on smaller screens */
+  .hero-image-container {
+    height: 40vh;
+    min-height: 300px;
   }
 
-  .carousel-content h1 {
-    font-size: 1.6rem;
+  .hero-text-container {
+    padding: 2rem 1rem;
   }
 
-  .carousel-content p {
+  .hero-text-content {
+    padding: 0 1rem;
+  }
+
+  .hero-text-content h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero-text-content p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .apply-now-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .carousel-dots {
+    bottom: 1rem; /* Reset to original position for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-image-container {
+    height: 35vh;
+    min-height: 250px;
+  }
+
+  .hero-text-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .hero-text-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-text-content p {
     font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .apply-now-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Utility classes for showing/hiding sections based on screen size */
+.desktop-only {
+  display: block;
+}
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: block;
+    padding: 0 1rem;
+    margin-top: 1rem;
+  }
+
+  .mobile-only .carousel-content {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    background: none;
+    color: #000;
+    padding: 0;
+  }
+
+  .mobile-only .carousel-content h1 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    text-shadow: none;
+  }
+
+  .mobile-only .carousel-content p {
+    font-size: 0.9rem;
+    text-shadow: none;
+  }
+
+  .mobile-only .apply-now-btn {
+    margin-top: 0.5rem;
+    width: 100%;
+    font-size: 0.85rem;
   }
 }

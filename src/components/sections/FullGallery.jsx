@@ -40,6 +40,34 @@ function FullGallery() {
       });
   }, [activeCategory]);
 
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const handleModalClose = () => {
+    setSelectedImage(null);
+    document.body.style.overflow = 'unset';
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Escape') {
+      handleModalClose();
+    }
+  };
+
+  useEffect(() => {
+    if (selectedImage) {
+      document.addEventListener('keydown', handleKeyPress);
+    } else {
+      document.removeEventListener('keydown', handleKeyPress);
+    }
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedImage]);
+
   return (
     <motion.div 
       className="full-gallery-section"
@@ -72,17 +100,9 @@ function FullGallery() {
           ))}
         </div>
 
-        <div 
-          className="gallery-grid" 
-          style={{ 
-            gridTemplateColumns: images.length === 1 
-              ? "1fr" 
-              : "repeat(auto-fit, minmax(160px, 1fr))",
-            gap: images.length === 1 ? "1rem" : "0.75rem"
-          }}
-        >
+        <div className="gallery-grid">
           {loading
-            ? [...Array(6)].map((_, index) => (
+            ? [...Array(5)].map((_, index) => (
                 <motion.div 
                   key={index} 
                   className="skeleton"
@@ -95,7 +115,7 @@ function FullGallery() {
                 <motion.div 
                   key={index} 
                   className="gallery-item"
-                  onClick={() => setSelectedImage(image)}
+                  onClick={() => handleImageClick(image)}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
@@ -112,9 +132,7 @@ function FullGallery() {
                     />
                   </LazyLoad>
                   <div className="image-caption">
-                    {image.caption.length > 20 
-                      ? `${image.caption.slice(0, 20)}...` 
-                      : image.caption}
+                    {image.caption}
                   </div>
                 </motion.div>
               ))
@@ -123,8 +141,8 @@ function FullGallery() {
 
         {selectedImage && (
           <motion.div 
-            className="image-modal" 
-            onClick={() => setSelectedImage(null)}
+            className="image-modal active"
+            onClick={handleModalClose}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
@@ -136,6 +154,7 @@ function FullGallery() {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.3 }}
             >
+              <button className="modal-close" onClick={handleModalClose}>&times;</button>
               <img 
                 src={selectedImage.url} 
                 alt={selectedImage.caption} 
