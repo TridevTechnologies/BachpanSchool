@@ -59,8 +59,7 @@ function Home() {
 
       <section className="cta-section">
         <div className="container">
-          <h2>Limited Seats Available for 2025-26</h2>
-          <p>Secure your child's future today. Application Deadline 17th March, 2025.</p>
+          
           <button className="btn btn-secondary" onClick={() => setEnrollmentOpen(true)}>
             Book a Campus Tour
           </button>

@@ -21,7 +21,7 @@ const steps = [
     icon: <FaCalendarCheck className="step-icon" />,
     title: "Step 2: Entrance Test",
     description:
-      "Appear for the entrance test scheduled on March 19TH, 2025. Test includes core subjects evaluation.",
+      "Appear for entrance test. Test includes core subjects evaluation.",
   },
   {
     icon: <FaUserCheck className="step-icon" />,
