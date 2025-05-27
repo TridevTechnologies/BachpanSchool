@@ -11,7 +11,8 @@ import {
   FaYoutube, 
   FaBriefcase,
   FaGraduationCap,
-  FaChevronDown
+  FaChevronDown,
+  FaShareAlt
 } from 'react-icons/fa';
 import JobApplicationPopup from './JobApplicationPopup';
 import '../styles/Navbar.css';
@@ -32,6 +33,7 @@ function Navbar() {
   const [isHidden, setIsHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isJobPopupOpen, setIsJobPopupOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -152,6 +154,22 @@ function Navbar() {
     setIsOpen(!isOpen);
   };
 
+  const toggleDropdown = (e) => {
+    e.stopPropagation();
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (isDropdownOpen && !e.target.closest('.navbar-socials-dropdown')) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isDropdownOpen]);
+
   return (
     <>
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${isHidden ? 'hide' : ''}`}>
@@ -204,6 +222,23 @@ function Navbar() {
                 <FaBriefcase />
                 <span>Careers</span>
               </button>
+
+              <div className="navbar-socials-dropdown">
+                <button className="social-dropdown-button" onClick={toggleDropdown}>
+                  <FaShareAlt />
+                </button>
+                <div className={`navbar-socials-dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
+                  <a href="https://www.facebook.com/bachpan.datia/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <FaFacebookF /> Facebook
+                  </a>
+                  <a href="https://www.instagram.com/bachpandatia/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <FaInstagram /> Instagram
+                  </a>
+                  <a href="https://www.youtube.com/@bachpanahpsdatia7936" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                    <FaYoutube /> YouTube
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 

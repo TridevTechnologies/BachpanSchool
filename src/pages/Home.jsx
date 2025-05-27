@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { scroller } from "react-scroll";
 import { useNavigate } from "react-router-dom";
-import { FaWhatsapp, FaPhoneAlt } from "react-icons/fa";
+import { FaWhatsapp, FaPhoneAlt, FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 import HeroCarousel from "../components/home/HeroCarousel";
 import AboutUs from "../components/sections/AboutUs";
 import WhyChooseUs from "../components/sections/WhyChooseUs";
@@ -76,6 +76,18 @@ function Home() {
         </a>
         <a href="tel:+917000564446" className="call-float">
           <FaPhoneAlt className="float-icon call-icon" />
+        </a>
+      </div>
+
+      <div className="navbar-socials">
+        <a href="https://www.facebook.com/bachpan.datia/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <FaFacebookF />
+        </a>
+        <a href="https://www.instagram.com/bachpandatia/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <FaInstagram />
+        </a>
+        <a href="https://www.youtube.com/@bachpanahpsdatia7936" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          <FaYoutube />
         </a>
       </div>
     </div>

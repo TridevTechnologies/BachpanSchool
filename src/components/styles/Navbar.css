@@ -729,3 +729,89 @@ html {
 .gap-2 {
   gap: 0.5rem;
 }
+
+.navbar-socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 16px;
+  padding: 8px 0;
+  border-left: 1px solid #ccc;
+  padding-left: 16px;
+}
+
+.navbar-socials a {
+  color: #333;
+  font-size: 20px;
+  transition: color 0.2s;
+}
+
+.navbar-socials a:hover {
+  color: #007bff;
+}
+
+.navbar-socials-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.social-dropdown-button {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 8px;
+}
+
+.social-dropdown-button:hover {
+  color: #007bff;
+}
+
+.navbar-socials-dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: #f0f0f0;
+  min-width: 180px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1000;
+  border-radius: 8px;
+  padding: 8px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.navbar-socials-dropdown-content.show {
+  display: block;
+  pointer-events: auto;
+}
+
+.navbar-socials-dropdown-content a {
+  color: #007bff;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.navbar-socials-dropdown-content a:hover {
+  background-color: #e0e0e0;
+  color: #0056b3;
+  transform: translateX(5px);
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
