@@ -15,7 +15,7 @@ function JobApplicationPopup({ isOpen, onClose }) {
           <a href="mailto:hr.schooldatia@gmail.com" className="job-popup-email">
             📧 hr.schooldatia@gmail.com
           </a>
-          <p>and our in team member will get in touch with you soon!</p>
+          <p>and our team member will get in touch with you soon!</p>
         </div>
       </div>
     </div>
