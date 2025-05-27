@@ -10,12 +10,12 @@ function JobApplicationPopup({ isOpen, onClose }) {
         <button className="job-popup-close" onClick={onClose}>&times;</button>
         <div className="job-popup-message">
           <h3>Hey there! 👋</h3>
-          <p>We'd love to have you on our team.</p>
+          <p>We'd glad to have you in our team.</p>
           <p>Kindly send your resume to</p>
           <a href="mailto:hr.schooldatia@gmail.com" className="job-popup-email">
             📧 hr.schooldatia@gmail.com
           </a>
-          <p>and our HR team will get in touch with you soon!</p>
+          <p>and our in team will get in touch with you soon!</p>
         </div>
       </div>
     </div>
