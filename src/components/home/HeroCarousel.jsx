@@ -75,16 +75,16 @@ function HeroCarousel({ setEnrollmentOpen }) {
             <img src={image.url} alt={image.alt} />
           </div>
         ))}
-        <div className="carousel-dots">
-          {bannerImages.map((_, index) => (
-            <button
-              key={index}
-              className={`dot ${index === currentSlide ? "active" : ""}`}
-              onClick={() => setCurrentSlide(index)}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
+      <div className="carousel-dots">
+        {bannerImages.map((_, index) => (
+          <button
+            key={index}
+            className={`dot ${index === currentSlide ? "active" : ""}`}
+            onClick={() => setCurrentSlide(index)}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
       </div>
 
       <div className="hero-text-container">

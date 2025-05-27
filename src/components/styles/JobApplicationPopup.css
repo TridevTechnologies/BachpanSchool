@@ -1,0 +1,111 @@
+.job-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.job-popup-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  max-width: 90%;
+  width: 400px;
+  position: relative;
+  animation: slideUp 0.4s ease-out;
+}
+
+.job-popup-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.job-popup-close:hover {
+  color: var(--primary);
+}
+
+.job-popup-message {
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.job-popup-message h3 {
+  color: var(--primary);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.job-popup-message p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.job-popup-email {
+  display: inline-block;
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  background-color: var(--background-light);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.job-popup-email:hover {
+  background-color: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .job-popup-content {
+    width: 85%;
+    padding: 1.5rem;
+  }
+
+  .job-popup-message h3 {
+    font-size: 1.3rem;
+  }
+
+  .job-popup-message p {
+    font-size: 1rem;
+  }
+} 

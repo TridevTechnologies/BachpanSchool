@@ -9,11 +9,14 @@ import Gallery from "../components/sections/Gallery";
 import Contact from "../components/sections/Contact";
 import EnrollmentProcess from "../components/sections/EnrollmentProcess";
 import EnrollmentForm from "../components/shared/EnrollmentForm";
+import FloatingJobButton from "../components/layout/FloatingJobButton";
+import JobApplicationPopup from "../components/layout/JobApplicationPopup";
 import "../components/styles/Home.css";
 
 function Home() {
   const navigate = useNavigate();
   const [isEnrollmentOpen, setEnrollmentOpen] = useState(false);
+  const [isJobPopupOpen, setIsJobPopupOpen] = useState(false);
 
   useEffect(() => {
     const hash = window.location.hash.replace("#", "");
@@ -31,10 +34,10 @@ function Home() {
   return (
     <div className="home" id="top">
       <EnrollmentForm isOpen={isEnrollmentOpen} onClose={() => setEnrollmentOpen(false)} />
+      <JobApplicationPopup isOpen={isJobPopupOpen} onClose={() => setIsJobPopupOpen(false)} />
 
       <section className="hero-section">
         <HeroCarousel />
-        
       </section>
 
       <section id="about" className="section">
@@ -59,15 +62,15 @@ function Home() {
 
       <section className="cta-section">
         <div className="container">
-          
           <button className="btn btn-secondary" onClick={() => setEnrollmentOpen(true)}>
             Book a Campus Tour
           </button>
         </div>
       </section>
 
-      {/* Floating WhatsApp & Call Buttons */}
+      {/* Floating Buttons */}
       <div className="floating-buttons">
+        <FloatingJobButton onClick={() => setIsJobPopupOpen(true)} />
         <a href="https://wa.me/918450843097" target="_blank" rel="noopener noreferrer" className="whatsapp-float">
           <FaWhatsapp className="float-icon whatsapp-icon" />
         </a>

@@ -78,7 +78,8 @@
 }
 
 /* Floating Button Base Styles */
-.floating-buttons a {
+.floating-buttons a,
+.floating-job-button {
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -96,6 +97,19 @@
 .float-icon {
   font-size: 2rem;
   color: white;
+}
+
+/* Job Button */
+.floating-job-button {
+  background-color: var(--secondary);
+  border: 3px solid var(--secondary-dark);
+  cursor: pointer;
+}
+
+.floating-job-button:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 14px rgba(184, 10, 10, 0.4);
+  background-color: var(--secondary-dark);
 }
 
 /* WhatsApp Button */
@@ -123,7 +137,8 @@
 }
 
 /* Tooltip Effect */
-.floating-buttons a::after {
+.floating-buttons a::after,
+.floating-job-button::after {
   content: attr(data-tooltip);
   position: absolute;
   top: 50%;
@@ -139,7 +154,8 @@
   transition: opacity 0.3s ease-in-out, left 0.3s ease-in-out;
 }
 
-.floating-buttons a:hover::after {
+.floating-buttons a:hover::after,
+.floating-job-button:hover::after {
   opacity: 1;
   left: -120%;
 }
@@ -208,7 +224,14 @@
     padding: 2rem 0;
   }
   
-  .floating-buttons a {
+  .floating-buttons {
+    bottom: 15px;
+    right: 15px;
+    gap: 12px;
+  }
+  
+  .floating-buttons a,
+  .floating-job-button {
     width: 50px;
     height: 50px;
   }
@@ -257,7 +280,8 @@
   }
   
   /* Make floating buttons smaller */
-  .floating-buttons a {
+  .floating-buttons a,
+  .floating-job-button {
     width: 45px;
     height: 45px;
   }
@@ -283,7 +307,8 @@
     gap: 10px;
   }
   
-  .floating-buttons a {
+  .floating-buttons a,
+  .floating-job-button {
     width: 40px;
     height: 40px;
   }

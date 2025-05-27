@@ -270,9 +270,9 @@
     padding: 0.7rem 1.2rem;
     font-size: 0.9rem;
   }
-}
+  }
 
-/* Utility classes for showing/hiding sections based on screen size */
+  /* Utility classes for showing/hiding sections based on screen size */
 .desktop-only {
   display: block;
 }
