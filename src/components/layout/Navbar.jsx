@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Link as ScrollLink, animateScroll as scroll } from 'react-scroll';
-import { 
-  FaBars, 
-  FaTimes, 
-  FaPhone, 
-  FaEnvelope, 
-  FaFacebookF, 
-  FaInstagram, 
-  FaYoutube, 
+import {
+  FaBars,
+  FaTimes,
+  FaPhone,
+  FaEnvelope,
+  FaFacebookF,
+  FaInstagram,
+  FaYoutube,
   FaBriefcase,
   FaGraduationCap,
   FaChevronDown,
@@ -39,15 +39,15 @@ function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       setIsScrolled(currentScrollY > 50);
-      
+
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsHidden(true);
       } else {
         setIsHidden(false);
       }
-      
+
       setLastScrollY(currentScrollY);
     };
 
@@ -84,24 +84,36 @@ function Navbar() {
     const currentPath = location.pathname;
     const isActive = currentPath === item.path;
     const className = `nav-link ${isActive ? "active" : ""}`;
-  
+
     if (item.label === "Home") {
-      return (
-        <ScrollLink
-          to="hero"
-          spy={true}
-          smooth="easeInOutQuad"
-          offset={-70}
-          duration={600}
-          activeClass="active"
-          className="nav-link"
-          onClick={() => setIsOpen(false)}
-        >
-          {item.label}
-        </ScrollLink>
-      );
+      if (currentPath === "/") {
+        return (
+          <ScrollLink
+            to="hero"
+            spy={true}
+            smooth="easeInOutQuad"
+            offset={-70}
+            duration={600}
+            activeClass="active"
+            className="nav-link"
+            onClick={() => setIsOpen(false)}
+          >
+            {item.label}
+          </ScrollLink>
+        );
+      } else {
+        return (
+          <Link
+            to="/"
+            className="nav-link"
+            onClick={() => setIsOpen(false)}
+          >
+            {item.label}
+          </Link>
+        );
+      }
     }
-  
+
     if (item.isScroll) {
       if (currentPath === "/") {
         return (
@@ -130,11 +142,11 @@ function Navbar() {
         );
       }
     }
-  
+
     return (
-      <Link 
-        to={item.path} 
-        className={className} 
+      <Link
+        to={item.path}
+        className={className}
         onClick={() => setIsOpen(false)}
       >
         {item.label}
@@ -173,9 +185,9 @@ function Navbar() {
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${isHidden ? 'hide' : ''}`}>
         <div className="navbar-container">
           <div className="brand-social-wrapper">
-            <Link 
-              to="/" 
-              className="navbar-brand" 
+            <Link
+              to="/"
+              className="navbar-brand"
               onClick={() => {
                 if (location.pathname === "/") {
                   scroll.scrollToTop();
@@ -201,10 +213,10 @@ function Navbar() {
                 {renderNavLink(item)}
               </div>
             ))}
-            
+
             <div className="navbar-actions">
-              <button 
-                className="apply-button primary" 
+              <button
+                className="apply-button primary"
                 onClick={() => {
                   window.location.href = '/inquiry-form';
                   setIsOpen(false);
@@ -213,8 +225,8 @@ function Navbar() {
                 Apply Now
               </button>
 
-              <button 
-                className="job-button secondary" 
+              <button
+                className="job-button secondary"
                 onClick={handleJobClick}
               >
                 <FaBriefcase />
@@ -241,8 +253,8 @@ function Navbar() {
           </div>
 
           <div className="mobile-controls">
-            <button 
-              className="mobile-menu-button" 
+            <button
+              className="mobile-menu-button"
               onClick={toggleMobileMenu}
               aria-label="Toggle navigation menu"
             >
@@ -260,7 +272,7 @@ function Navbar() {
         <div className="nav-menu mobile">
           <div className="mobile-menu-header">
             <div className="mobile-menu-title">Menu</div>
-            <button 
+            <button
               className="mobile-menu-close"
               onClick={() => setIsOpen(false)}
               aria-label="Close menu"
@@ -274,7 +286,7 @@ function Navbar() {
               {renderNavLink(item)}
             </div>
           ))}
-          
+
           {/* Social Media Links in Mobile Sidebar */}
           <div className="social-links mobile-sidebar">
             <a href="https://www.facebook.com/bachpan.datia/" target="_blank" rel="noopener noreferrer">
@@ -287,10 +299,10 @@ function Navbar() {
               <FaYoutube />
             </a>
           </div>
-          
+
           <div className="mobile-actions">
-            <button 
-              className="apply-button primary mobile" 
+            <button
+              className="apply-button primary mobile"
               onClick={() => {
                 window.location.href = '/inquiry-form';
                 setIsOpen(false);
@@ -299,8 +311,8 @@ function Navbar() {
               Apply Now
             </button>
 
-            <button 
-              className="job-button secondary mobile" 
+            <button
+              className="job-button secondary mobile"
               onClick={handleJobClick}
             >
               <FaBriefcase />
@@ -310,9 +322,9 @@ function Navbar() {
         </div>
       )}
 
-      <JobApplicationPopup 
-        isOpen={isJobPopupOpen} 
-        onClose={() => setIsJobPopupOpen(false)} 
+      <JobApplicationPopup
+        isOpen={isJobPopupOpen}
+        onClose={() => setIsJobPopupOpen(false)}
       />
     </>
   );

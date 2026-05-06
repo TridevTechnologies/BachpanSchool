@@ -1,6 +1,8 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { FaBullseye, FaLightbulb, FaHistory, FaCheckCircle } from 'react-icons/fa';
 import '../styles/AboutUs.css';
- 
+
 function AboutUs() {
   const milestones = [
     {
@@ -26,47 +28,78 @@ function AboutUs() {
   ];
 
   return (
-    <div className="about-section">
-      <div className="container">
-        <div className="about-header">
-          <h2>Our Story</h2>
-          <p>Building a foundation of excellence in education since 2013</p>
-        </div>
+    <section className="about-modern-section" id="about">
+      {/* Premium Hero Header (Matching Fee Page) */}
+      <div className="about-hero-header">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="about-hero-content"
+        >
+          <span className="badge-premium">Our Story</span>
+          <h1>Building a Foundation of <br/><span>Excellence Since 2013</span></h1>
+        </motion.div>
+      </div>
 
-        <div className="mission-vision-grid">
-          <div className="info-card">
+      <div className="about-main-container">
+        {/* Mission & Vision Overlay Cards */}
+        <div className="vision-mission-row">
+          <motion.div 
+            className="modern-info-card mission-card"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="icon-box"><FaBullseye /></div>
             <h2>Our Mission</h2>
-            <p>
-              To Educate, Empower, and Excel. We strive to nurture the unique potential of every child by providing a safe, supportive, and stimulating learning environment. We aim to foster both academic excellence and social growth, ensuring that every student thrives with confidence and curiosity.
-            </p>
-          </div>
-          <div className="info-card">
+            <p>To Educate, Empower, and Excel. We strive to nurture the unique potential of every child by providing a safe, supportive, and stimulating learning environment. We aim to foster both academic excellence and social growth, ensuring that every student thrives with confidence and curiosity.</p>
+          </motion.div>
+
+          <motion.div 
+            className="modern-info-card vision-card"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="icon-box"><FaLightbulb /></div>
             <h2>Our Vision</h2>
-            <p>
-              To provide world-class quality education in Datia, blending innovation, technology, and values to nurture confident and competent global citizens.
-            </p>
-          </div>
+            <p>To provide world-class quality education in Datia, blending innovation, technology, and values to nurture confident and competent global citizens.</p>
+          </motion.div>
         </div>
 
-        <div className="timeline-section">
-          <h2>Our Journey</h2>
-          <div className="timeline">
+        {/* Vertical Premium Timeline */}
+        <div className="timeline-wrapper">
+          <div className="timeline-header">
+            <h2>Our Journey</h2>
+            <p>A decade of commitment and growth</p>
+          </div>
+          
+          <div className="premium-timeline">
             {milestones.map((milestone, index) => (
-              <div 
-                key={index} 
-                className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}
+              <motion.div 
+                key={index}
+                className="timeline-item"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                viewport={{ once: true }}
               >
-                <div className="timeline-content">
+                <div className="timeline-marker">
+                  <div className="marker-dot"><FaCheckCircle /></div>
+                  <div className="marker-line"></div>
+                </div>
+                <div className="timeline-info">
+                  <span className="timeline-year">{milestone.year}</span>
                   <h3>{milestone.title}</h3>
-                  <span className="year">{milestone.year}</span>
                   <p>{milestone.description}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

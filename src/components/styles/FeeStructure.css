@@ -56,7 +56,7 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  padding: 1.2rem 1rem;
+  padding: 0.8rem 1rem;
   text-align: left;
   font-weight: 800;
 }
@@ -68,9 +68,10 @@
 }
 
 .modern-fee-table td {
-  padding: 1.2rem 1rem;
+  padding: 0.8rem 1rem;
   border-bottom: 1px solid #f1f5f9;
   font-size: 0.95rem;
+  white-space: nowrap;
 }
 
 .grade-name {

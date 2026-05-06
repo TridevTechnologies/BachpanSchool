@@ -50,7 +50,7 @@ function FeeStructure() {
   if (loading) {
     return (
       <div className="fee-loading-screen">
-        <motion.div 
+        <motion.div
           animate={{ rotate: 360 }}
           transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
           className="loader-icon"
@@ -66,7 +66,7 @@ function FeeStructure() {
 
       {/* Clean Header */}
       <section className="fee-simple-header">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="header-content"
@@ -77,7 +77,7 @@ function FeeStructure() {
 
       {/* Main Table Container */}
       <div className="fee-main-container">
-        <motion.div 
+        <motion.div
           className="premium-table-card"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}

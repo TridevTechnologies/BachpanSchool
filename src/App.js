@@ -16,6 +16,15 @@ function App() {
   const [lastActivityTime, setLastActivityTime] = useState(Date.now());
 
   useEffect(() => {
+    // Force scroll to top on refresh and clear hash
+    window.history.scrollRestoration = 'manual';
+    if (window.performance.navigation.type === 1) {
+      window.location.hash = '';
+    }
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     // Track if modal has been shown during this session
     const modalShown = sessionStorage.getItem('exitModalShown');
     if (modalShown) {

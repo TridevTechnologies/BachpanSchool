@@ -17,15 +17,18 @@ function Home() {
   const [isJobPopupOpen, setIsJobPopupOpen] = useState(false);
 
   useEffect(() => {
+    // Only scroll to hash if it's NOT a page refresh/reload
+    const isReload = window.performance.navigation.type === 1;
     const hash = window.location.hash.replace("#", "");
-    if (hash) {
+    
+    if (hash && !isReload) {
       scroller.scrollTo(hash, {
         smooth: true,
         offset: -70,
         duration: 500,
       });
     } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo(0, 0);
     }
   }, []);
 
