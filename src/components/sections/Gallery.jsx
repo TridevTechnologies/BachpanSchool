@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Gallery.css";
+import { FaExpandAlt, FaArrowRight } from "react-icons/fa";
 
 const PRIVATE_API_KEY = "private_jM8qtJZ+GzAwkea1dpucoPMaCC4=";
 const GALLERY_CATEGORIES = [
-  { id: "campus", label: "Campus", path: "Gallery/Campus" },
-  { id: "events", label: "Events", path: "Gallery/Events" },
+  { id: "campus", label: "Campus Life", path: "Gallery/Campus" },
+  { id: "events", label: "Special Events", path: "Gallery/Events" },
 ];
 
 function Gallery() {
@@ -26,9 +27,9 @@ function Gallery() {
           if (Array.isArray(data)) {
             setImages((prev) => ({
               ...prev,
-              [category.id]: data.slice(0, 4).map((file) => ({
+              [category.id]: data.slice(0, 6).map((file) => ({
                 url: file.url,
-                caption: file.name.replace(/\.[^/.]+$/, ""), // Remove file extension
+                caption: file.name.replace(/\.[^/.]+$/, ""),
               })),
             }));
           }
@@ -47,37 +48,25 @@ function Gallery() {
     document.body.style.overflow = 'unset';
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Escape') {
-      handleModalClose();
-    }
-  };
-
-  useEffect(() => {
-    if (selectedImage) {
-      document.addEventListener('keydown', handleKeyPress);
-    } else {
-      document.removeEventListener('keydown', handleKeyPress);
-    }
-    return () => {
-      document.removeEventListener('keydown', handleKeyPress);
-      document.body.style.overflow = 'unset';
-    };
-  }, [selectedImage]);
-
   return (
-    <div className="gallery-section">
+    <div className="premium-gallery-section">
       <div className="container">
-        <div className="section-header">
-          <h2>School Gallery</h2>
-          <p>Glimpses of life at Bachpan Datia</p>
+        <div className="gallery-header-flex">
+          <div className="header-left">
+            <span className="premium-label">Our Memories</span>
+            <h2>Glimpses of <span>Excellence</span></h2>
+            <p>Capturing the vibrant moments and academic milestones of our students.</p>
+          </div>
+          <button className="premium-view-all-btn" onClick={() => navigate("/full-gallery")}>
+            View All Collection <FaArrowRight />
+          </button>
         </div>
 
-        <div className="gallery-tabs">
+        <div className="premium-gallery-tabs">
           {GALLERY_CATEGORIES.map((category) => (
             <button
               key={category.id}
-              className={`tab-button ${activeCategory === category.id ? "active" : ""}`}
+              className={`modern-tab ${activeCategory === category.id ? "active" : ""}`}
               onClick={() => setActiveCategory(category.id)}
             >
               {category.label}
@@ -85,40 +74,31 @@ function Gallery() {
           ))}
         </div>
 
-        <div className="gallery-grid">
+        <div className="masonry-gallery-grid">
           {(images[activeCategory] || []).map((image, index) => (
             <div 
               key={index} 
-              className="gallery-item" 
+              className={`masonry-item item-size-${(index % 4) + 1}`}
               onClick={() => handleImageClick(image)}
             >
-              <img src={image.url} alt={image.caption} />
-              <div className="image-caption">
-                <p>{image.caption}</p>
+              <div className="masonry-image-wrapper">
+                <img src={image.url} alt={image.caption} loading="lazy" />
+                <div className="masonry-overlay">
+                  <FaExpandAlt className="expand-icon" />
+                  <span>{image.caption}</span>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        <button className="view-all-button" onClick={() => navigate("/full-gallery")}>
-          View All Images
-        </button>
-
         {selectedImage && (
-          <div 
-            className={`image-modal active`}
-            onClick={handleModalClose}
-          >
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-              <button className="modal-close" onClick={handleModalClose}>&times;</button>
-              <img 
-                src={selectedImage.url} 
-                alt={selectedImage.caption} 
-                className="modal-image"
-                style={{ objectFit: 'contain' }}
-              />
-              <div className="modal-caption">
-                {selectedImage.caption}
+          <div className="gallery-premium-modal active" onClick={handleModalClose}>
+            <div className="modal-stage" onClick={(e) => e.stopPropagation()}>
+              <button className="close-stage" onClick={handleModalClose}>&times;</button>
+              <img src={selectedImage.url} alt={selectedImage.caption} />
+              <div className="modal-info-bar">
+                <h3>{selectedImage.caption}</h3>
               </div>
             </div>
           </div>

@@ -117,12 +117,12 @@ body {
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(229, 231, 235, 0.3);
   position: fixed;
-  top: 0;
+  top: 32px; /* Top bar offset */
   left: 0;
   right: 0;
   width: 100%;
   z-index: 1001;
-  height: 70px;
+  height: 65px; /* Reduced height */
   transition: all 0.3s ease;
 }
 
@@ -239,13 +239,15 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-  color: #b80a0a !important; /* Professional Bachpan Red */
+  color: #b80a0a !important;
+  /* Professional Bachpan Red */
 }
 
 .nav-link:hover::before,
 .nav-link.active::before {
   width: 80%;
-  background: linear-gradient(90deg, #b80a0a, #f59e0b) !important; /* Red to Gold gradient */
+  background: linear-gradient(90deg, #b80a0a, #f59e0b) !important;
+  /* Red to Gold gradient */
 }
 
 /* Action Buttons */
@@ -511,27 +513,27 @@ body {
   .top-bar {
     display: block;
   }
-  
+
   .contact-info {
     display: flex;
   }
-  
+
   .top-social-links {
     display: flex;
   }
-  
+
   .navbar-container {
     padding: 0 2rem;
   }
-  
+
   .nav-menu.desktop {
     display: flex;
   }
-  
+
   .mobile-controls {
     display: none;
   }
-  
+
   .navbar-actions {
     display: flex;
     gap: 1rem;
@@ -542,21 +544,21 @@ body {
   .navbar-container {
     padding: 0 2rem;
   }
-  
+
   .nav-menu {
     gap: 0.5rem;
   }
-  
+
   .nav-link {
     padding: 0.75rem 1rem;
     font-size: 1rem;
   }
-  
+
   .navbar-actions {
     gap: 0.75rem;
     margin-left: 0.75rem;
   }
-  
+
   .apply-button,
   .job-button {
     padding: 0.75rem 1.25rem;
@@ -579,21 +581,21 @@ body {
   .navbar-container {
     padding: 0 3rem;
   }
-  
+
   .nav-menu {
     gap: 0.75rem;
   }
-  
+
   .nav-link {
     padding: 0.875rem 1.25rem;
     font-size: 1.05rem;
   }
-  
+
   .navbar-actions {
     gap: 1rem;
     margin-left: 1rem;
   }
-  
+
   .apply-button,
   .job-button {
     padding: 0.875rem 1.5rem;
@@ -616,7 +618,8 @@ body {
 
 @media (max-width: 767px) {
   .navbar {
-    height: 65px;
+    height: 60px; /* Slimmer for mobile */
+    top: 0;
   }
 
   .navbar-container {
@@ -706,6 +709,7 @@ html {
   outline: 2px solid var(--primary-color);
   outline-offset: 2px;
 }
+
 /* Additional utility classes */
 .text-center {
   text-align: center;
@@ -777,7 +781,7 @@ html {
   top: 100%;
   background-color: #f0f0f0;
   min-width: 180px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   border-radius: 8px;
   padding: 8px;
@@ -807,11 +811,12 @@ html {
 }
 
 @keyframes fadeIn {
-  from { 
+  from {
     opacity: 0;
     transform: translateY(-10px);
   }
-  to { 
+
+  to {
     opacity: 1;
     transform: translateY(0);
   }

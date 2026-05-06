@@ -8,17 +8,24 @@
   position: relative;
   height: auto;
   padding: 0 !important;
-  margin: 0 !important; /* Force zero margin */
+  margin-top: 115px !important; /* Offset for Navbar(65) + TopBar(32) + Gap(18) */
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    margin-top: 80px !important; /* Offset for Mobile Navbar(60) + Gap(20) */
+  }
 }
 
 /* Generic section styling */
 .section {
-  padding: 4rem 0;
+  padding: 1rem 0;
+  /* Minimal padding for the wrapper */
   animation: fadeIn 0.8s ease-out;
 }
 
 #about.section {
-  padding-top: 0 !important; 
+  padding-top: 0 !important;
   margin-top: 0 !important;
 }
 
@@ -33,7 +40,6 @@
   z-index: 1000;
 }
 
-/* Floating Button Base Styles */
 .floating-buttons a,
 .floating-job-button {
   width: 55px;
@@ -53,44 +59,56 @@
   color: white;
 }
 
-.floating-job-button { background-color: #f97316; }
-.whatsapp-float { background-color: #25d366; }
-.call-float { background-color: #3b82f6; }
+.floating-job-button {
+  background-color: #f97316;
+}
+
+.whatsapp-float {
+  background-color: #25d366;
+}
+
+.call-float {
+  background-color: #3b82f6;
+}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .section {
-    padding: 2.5rem 0;
+    padding: 0.5rem 0;
   }
-  
+
   .floating-buttons {
-    bottom: 15px;
-    right: 15px;
-    gap: 10px;
+    bottom: 10px;
+    /* Lowered even more */
+    right: 10px;
+    gap: 8px;
   }
-  
+
   .floating-buttons a,
   .floating-job-button {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
   }
-  
+
   .float-icon {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 }
 
 @media (max-width: 480px) {
   .hero-section {
-    padding-top: 0px !important; /* Let Navbar handle spacing */
-  }
-  
-  .section {
-    padding: 2rem 0;
+    padding-top: 0px !important;
   }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

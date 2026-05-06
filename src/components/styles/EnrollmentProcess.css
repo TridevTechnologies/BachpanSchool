@@ -1,178 +1,303 @@
-.enrollment-section {
-  padding: 5rem 0;
-  background-color: #ffffff;
+.enroll-journey-section {
+  padding: 3rem 0;
+  background: #f8fafc;
+  position: relative;
+  overflow: hidden;
   font-family: 'Poppins', sans-serif;
 }
 
+/* Background Decoration */
+.journey-bg-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 10% 20%, rgba(30, 58, 138, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(127, 29, 29, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
+  position: relative;
+  z-index: 2;
 }
 
-.section-header {
+/* Header */
+.journey-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
 }
 
-.section-header h2 {
-  font-size: 2.8rem;
-  font-weight: 800;
+.journey-badge {
+  background: #1e3a8a;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 20px rgba(30, 58, 138, 0.2);
+}
+
+.journey-header h2 {
+  font-size: 3.5rem;
+  font-weight: 900;
   color: #0f172a;
-  margin-bottom: 1rem;
-}
-
-.section-header p {
-  font-size: 1.1rem;
-  color: #64748b;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* Important Dates Grid */
-.important-dates {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-bottom: 5rem;
-}
-
-.date-card {
-  background: #f8fafc;
-  padding: 2.5rem 2rem;
-  border-radius: 24px;
-  text-align: center;
-  border: 1px solid rgba(0, 0, 0, 0.03);
-  transition: all 0.3s ease;
-}
-
-.date-card:hover {
-  transform: translateY(-5px);
-  background: white;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
-  border-color: #facc15;
-}
-
-.date-icon {
-  font-size: 2.5rem;
-  color: #1e3a8a;
   margin-bottom: 1.5rem;
 }
 
-.date-card h3 {
-  font-size: 1.3rem;
-  color: #0f172a;
-  margin-bottom: 0.5rem;
-  font-weight: 800;
-}
-
-.date-card p {
+.journey-header h2 span {
   color: #1e3a8a;
-  font-weight: 700;
+  background: linear-gradient(120deg, #1e3a8a, #7f1d1d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.journey-header p {
+  color: #64748b;
   font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
-/* Enrollment Steps */
-.enrollment-steps {
+/* Journey Stepper */
+.journey-stepper-container {
+  position: relative;
+  padding-bottom: 6rem;
+}
+
+.journey-steps-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-  margin-bottom: 4rem;
 }
 
-.step-card {
-  background: white;
-  padding: 3rem 2rem;
-  border-radius: 24px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
-  border: 1px solid #f1f5f9;
+.journey-step-card {
   position: relative;
   transition: all 0.4s ease;
 }
 
-.step-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
-  border-color: #1e3a8a;
-}
-
-.step-number {
-  position: absolute;
-  top: 1.5rem;
-  right: 2rem;
-  font-size: 3rem;
-  font-weight: 900;
-  color: #f1f5f9;
-  z-index: 1;
-  transition: color 0.3s ease;
-}
-
-.step-card:hover .step-number {
-  color: #fef9c3;
-}
-
-.step-icon-wrapper {
+.step-card-inner {
+  background: white;
+  padding: 3rem 2rem;
+  border-radius: 32px;
+  height: 100%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s ease;
   position: relative;
   z-index: 2;
+}
+
+.journey-step-card:hover .step-card-inner {
+  transform: translateY(-15px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent-color);
+}
+
+.step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.step-number-tag {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #f1f5f9;
+  line-height: 1;
+  transition: all 0.3s ease;
+}
+
+.journey-step-card:hover .step-number-tag {
+  color: var(--accent-color);
+  opacity: 0.15;
+}
+
+.step-icon-circle {
   width: 4.5rem;
   height: 4.5rem;
-  background: #f1f5f9;
+  background: #f8fafc;
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 2rem;
-  transition: all 0.3s ease;
+  font-size: 2rem;
+  color: #1e3a8a;
+  transition: all 0.4s ease;
 }
 
-.step-card:hover .step-icon-wrapper {
-  background: #1e3a8a;
+.journey-step-card:hover .step-icon-circle {
+  background: var(--accent-color);
   color: white;
   transform: rotate(10deg);
 }
 
-.step-icon {
-  font-size: 2rem;
-}
-
-.step-card h3 {
+.step-content h3 {
   font-size: 1.4rem;
   font-weight: 800;
   color: #0f172a;
   margin-bottom: 1rem;
 }
 
-.step-card p {
+.step-content p {
   color: #64748b;
   line-height: 1.7;
   font-size: 0.95rem;
 }
 
+.step-footer-arrow {
+  margin-top: auto;
+  padding-top: 2rem;
+  color: #e2e8f0;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.journey-step-card:hover .step-footer-arrow {
+  color: var(--accent-color);
+  transform: translateX(5px);
+}
+
+/* Connector Arrow */
+.step-connector-arrow {
+  position: absolute;
+  top: 50%;
+  right: -1.5rem;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  color: #e2e8f0;
+  z-index: 1;
+}
+
+/* Journey CTA Card */
+.journey-cta-wrapper {
+  margin-top: 4rem;
+}
+
+.cta-glass-card {
+  background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%);
+  padding: 4rem;
+  border-radius: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  box-shadow: 0 30px 70px rgba(30, 58, 138, 0.3);
+}
+
+.cta-text h4 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.cta-text p {
+  opacity: 0.8;
+  font-size: 1.1rem;
+}
+
+.premium-apply-btn {
+  background: #facc15;
+  color: #1e3a8a;
+  border: none;
+  padding: 1.2rem 3rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.premium-apply-btn:hover {
+  transform: scale(1.05);
+  background: white;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
 /* Responsive Scaling */
-@media (max-width: 1024px) {
-  .important-dates {
+@media (max-width: 1400px) {
+  .journey-header h2 {
+    font-size: 3rem;
+  }
+
+  .cta-glass-card {
+    padding: 3rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .journey-steps-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .step-connector-arrow {
+    display: none;
+  }
+
+  .journey-line-connector {
+    display: none;
+  }
+}
+
+@media (max-width: 992px) {
+  .cta-glass-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
   }
 }
 
 @media (max-width: 768px) {
-  .enrollment-section { padding: 4rem 0; }
-  .section-header h2 { font-size: 2.2rem; }
-  .important-dates {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  .enroll-journey-section {
+    padding: 5rem 0;
   }
-  .enrollment-steps {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+
+  .journey-header h2 {
+    font-size: 2.2rem;
   }
-  .step-card { padding: 2.5rem 1.5rem; }
-  .step-number { font-size: 2.5rem; top: 1rem; right: 1.5rem; }
+
+  .journey-header {
+    margin-bottom: 4rem;
+  }
+
+  .journey-steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-text h4 {
+    font-size: 1.8rem;
+  }
+
+  .step-card-inner {
+    padding: 2.5rem 1.5rem;
+  }
 }
 
 @media (max-width: 480px) {
-  .section-header h2 { font-size: 1.8rem; }
-  .date-card { padding: 2rem 1rem; }
-  .step-card h3 { font-size: 1.2rem; }
+  .journey-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .journey-badge {
+    font-size: 0.7rem;
+    padding: 0.4rem 1.2rem;
+  }
+
+  .premium-apply-btn {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    width: 100%;
+  }
 }
