@@ -275,19 +275,20 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .exit-modal-overlay {
-    padding: 0; /* Remove padding on mobile */
-    align-items: center; /* Center vertically */
+    padding: 10px;
+    align-items: center;
   }
   
   .exit-modal-container {
-    margin: 10px;
-    max-height: 95vh;
-    overflow-y: auto;
-    border-radius: 10px;
+    margin: 0;
+    max-height: 90vh;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
   }
   
   .exit-modal-header h2 {
-    font-size: 24px;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
   }
   
   .exit-modal-subhead {
@@ -295,25 +296,27 @@
   }
   
   .exit-modal-content {
-    padding: 20px;
+    padding: 15px;
   }
   
   .exit-modal-benefits, .exit-modal-form {
-    padding: 20px;
-    min-width: 100%; /* Full width on mobile */
+    padding: 20px 15px;
+    min-width: 100%;
+    box-shadow: none;
+    border: 1px solid rgba(0,0,0,0.05);
   }
   
   .exit-modal-footer {
     flex-direction: column;
     gap: 10px;
+    text-align: center;
+    padding-top: 15px;
   }
 }
 
 @media (max-width: 480px) {
   .exit-modal-container {
-    margin: 0;
-    border-radius: 0; /* Full screen on small mobile */
-    height: 100vh;
+    max-height: 95vh;
   }
   
   .exit-modal-header h2 {
@@ -334,17 +337,20 @@
   }
   
   .cta-button {
-    font-size: 16px;
-    padding: 12px 16px;
+    font-size: 1.1rem;
+    padding: 14px;
   }
-  
-  /* Make sure form elements are properly sized for touch */
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    font-size: 16px; /* Prevent zoom on iPhone */
-    padding: 12px 10px;
+}
+
+/* Fix for very short screens */
+@media (max-height: 600px) {
+  .exit-modal-container {
+    max-height: 98vh;
   }
+  .exit-modal-header { padding: 15px 10px 10px; margin-bottom: 10px; }
+  .exit-modal-header h2 { font-size: 1.1rem; }
+  .exit-modal-subhead { font-size: 0.85rem; }
+  .exit-modal-benefits { display: none; } /* Hide benefits to show form */
 }
 
 /* Special fix for very small screens */

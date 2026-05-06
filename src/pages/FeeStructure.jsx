@@ -49,13 +49,28 @@ function FeeStructure() {
 
   if (loading) {
     return (
-      <div className="fee-loading-screen">
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-          className="loader-icon"
-        ><FaSchool /></motion.div>
-        <p>Fetching Latest Fee Structure...</p>
+      <div className="fee-skeleton-wrapper">
+        <div className="skeleton-header">
+          <div className="skeleton-title-box"></div>
+        </div>
+        <div className="fee-main-container">
+          <div className="skeleton-table-card">
+            <div className="skeleton-table-header">
+              <div className="skeleton-th"></div>
+              <div className="skeleton-th"></div>
+              <div className="skeleton-th"></div>
+              <div className="skeleton-th"></div>
+            </div>
+            {[...Array(8)].map((_, i) => (
+              <div key={i} className="skeleton-row">
+                <div className="skeleton-td"></div>
+                <div className="skeleton-td"></div>
+                <div className="skeleton-td"></div>
+                <div className="skeleton-td"></div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
@@ -84,6 +99,10 @@ function FeeStructure() {
           transition={{ delay: 0.2 }}
         >
           <div className="table-wrapper">
+            <div className="scroll-hint-mobile">
+              <span>Swipe left to view more</span>
+              <div className="scroll-arrow">→</div>
+            </div>
             <table className="modern-fee-table">
               <thead>
                 <tr>

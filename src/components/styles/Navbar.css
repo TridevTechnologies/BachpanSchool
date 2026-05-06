@@ -117,22 +117,26 @@ body {
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(229, 231, 235, 0.3);
   position: fixed;
-  top: 32px; /* Top bar offset */
+  top: 32px; /* Default with top-bar */
   left: 0;
   right: 0;
   width: 100%;
   z-index: 1001;
-  height: 65px; /* Reduced height */
-  transition: all 0.3s ease;
+  height: 65px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              top 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.3s ease;
 }
 
 .navbar.scrolled {
+  top: 0; /* Move to top when scrolled */
   background: rgba(255, 255, 255, 0.98);
   box-shadow: var(--shadow-lg);
 }
 
 .navbar.hide {
-  transform: translateY(-100%);
+  /* Translate by 100% + the 32px offset to ensure it's fully gone */
+  transform: translateY(calc(-100% - 32px));
 }
 
 .navbar-container {
@@ -508,170 +512,56 @@ body {
   transform: translateY(-2px);
 }
 
-/* Responsive Styles */
-@media (min-width: 768px) {
-  .top-bar {
-    display: block;
-  }
+/* ============================================================
+   RESPONSIVE STYLES — Mobile-First, Best Way
+   ============================================================ */
 
-  .contact-info {
-    display: flex;
-  }
-
-  .top-social-links {
-    display: flex;
-  }
-
-  .navbar-container {
-    padding: 0 2rem;
-  }
-
-  .nav-menu.desktop {
-    display: flex;
-  }
-
-  .mobile-controls {
-    display: none;
-  }
-
-  .navbar-actions {
-    display: flex;
-    gap: 1rem;
-  }
+/* ---- Base: Mobile (< 1025px) — Hamburger Menu ---- */
+.nav-menu.desktop {
+  display: none;
 }
 
-@media (min-width: 992px) {
-  .navbar-container {
-    padding: 0 2rem;
-  }
+/* .navbar-actions is nested inside .nav-menu.desktop, so parent hide handles it */
 
-  .nav-menu {
-    gap: 0.5rem;
-  }
-
-  .nav-link {
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-  }
-
-  .navbar-actions {
-    gap: 0.75rem;
-    margin-left: 0.75rem;
-  }
-
-  .apply-button,
-  .job-button {
-    padding: 0.75rem 1.25rem;
-    font-size: 0.95rem;
-  }
-
-  .social-links.desktop {
-    gap: 0.75rem;
-    margin-right: 1rem;
-  }
-
-  .social-links.desktop a {
-    width: 32px;
-    height: 32px;
-    font-size: 0.9rem;
-  }
+.social-links.desktop {
+  display: none;
 }
 
-@media (min-width: 1200px) {
-  .navbar-container {
-    padding: 0 3rem;
-  }
-
-  .nav-menu {
-    gap: 0.75rem;
-  }
-
-  .nav-link {
-    padding: 0.875rem 1.25rem;
-    font-size: 1.05rem;
-  }
-
-  .navbar-actions {
-    gap: 1rem;
-    margin-left: 1rem;
-  }
-
-  .apply-button,
-  .job-button {
-    padding: 0.875rem 1.5rem;
-  }
+.mobile-controls {
+  display: flex;
 }
 
-@media (max-width: 1024px) {
-  .navbar-container {
-    padding: 0 1.5rem;
-  }
-
-  .brand-primary {
-    font-size: 1.4rem;
-  }
-
-  .brand-secondary {
-    font-size: 0.9rem;
-  }
+.top-bar {
+  display: none;
 }
 
-@media (max-width: 767px) {
-  .navbar {
-    height: 60px; /* Slimmer for mobile */
-    top: 0;
-  }
-
-  .navbar-container {
-    padding: 0 1rem;
-  }
-
-  .brand-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 1.25rem;
-  }
-
-  .brand-primary {
-    font-size: 1.3rem;
-  }
-
-  .brand-secondary {
-    font-size: 0.85rem;
-  }
-
-  .nav-menu.desktop {
-    display: none;
-  }
-
-  .mobile-controls {
-    display: flex;
-  }
-
-  .navbar-actions {
-    display: none;
-  }
-
-  .top-bar {
-    display: none;
-  }
-
-  .social-links.desktop {
-    display: none;
-  }
+.navbar {
+  top: 0;
 }
 
+.navbar.hide {
+  transform: translateY(-100%);
+}
+
+/* ---- Small Phones (max 480px) ---- */
 @media (max-width: 480px) {
   .navbar-container {
     padding: 0 0.75rem;
   }
 
+  .brand-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+  }
+
   .brand-primary {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .brand-secondary {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 
   .nav-menu.mobile {
@@ -683,6 +573,177 @@ body {
   .mobile-actions .job-button {
     padding: 0.875rem;
     font-size: 0.95rem;
+  }
+}
+
+/* ---- Regular Phones (481px - 767px) ---- */
+@media (min-width: 481px) and (max-width: 767px) {
+  .navbar-container {
+    padding: 0 1rem;
+  }
+
+  .brand-primary {
+    font-size: 1.3rem;
+  }
+
+  .brand-secondary {
+    font-size: 0.85rem;
+  }
+}
+
+/* ---- Tablets (768px - 1024px) — Still Hamburger ---- */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .navbar {
+    height: 65px;
+    top: 0; /* No top-bar on tablets */
+  }
+
+  .navbar-container {
+    padding: 0 1.5rem;
+  }
+
+  .brand-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 1.3rem;
+  }
+
+  .brand-primary {
+    font-size: 1.4rem;
+  }
+
+  .brand-secondary {
+    font-size: 0.9rem;
+  }
+
+  /* Top bar hidden on tablet too */
+  .top-bar {
+    display: none;
+  }
+}
+
+/* ---- Desktop (1025px+) — Full Nav Appears ---- */
+@media (min-width: 1025px) {
+  .top-bar {
+    display: block;
+  }
+
+  .navbar {
+    height: 65px;
+    top: 32px; /* Below top-bar */
+  }
+
+  .navbar-container {
+    padding: 0 1.5rem;
+  }
+
+  .nav-menu.desktop {
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .mobile-controls {
+    display: none;
+  }
+
+  .navbar-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 0.5rem;
+  }
+
+  .apply-button,
+  .job-button {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+  }
+
+  .social-links.desktop {
+    display: flex;
+    gap: 0.4rem;
+    margin-right: 0.5rem;
+  }
+
+  .social-links.desktop a {
+    width: 26px;
+    height: 26px;
+    font-size: 0.75rem;
+  }
+}
+
+/* ---- Large Desktop (1200px+) — More Breathing Room ---- */
+@media (min-width: 1200px) {
+  .navbar-container {
+    padding: 0 2rem;
+  }
+
+  .nav-menu.desktop {
+    gap: 0.4rem;
+  }
+
+  .nav-link {
+    padding: 0.6rem 0.85rem;
+    font-size: 0.92rem;
+  }
+
+  .navbar-actions {
+    gap: 0.75rem;
+    margin-left: 0.75rem;
+  }
+
+  .apply-button,
+  .job-button {
+    padding: 0.7rem 1.1rem;
+    font-size: 0.88rem;
+  }
+
+  .social-links.desktop {
+    gap: 0.6rem;
+    margin-right: 0.75rem;
+  }
+
+  .social-links.desktop a {
+    width: 30px;
+    height: 30px;
+    font-size: 0.85rem;
+  }
+}
+
+/* ---- Extra-Large Desktop (1400px+) — Full Luxury ---- */
+@media (min-width: 1400px) {
+  .navbar-container {
+    padding: 0 3rem;
+  }
+
+  .nav-menu.desktop {
+    gap: 0.6rem;
+  }
+
+  .nav-link {
+    padding: 0.75rem 1.1rem;
+    font-size: 1rem;
+  }
+
+  .navbar-actions {
+    gap: 1rem;
+    margin-left: 1rem;
+  }
+
+  .apply-button,
+  .job-button {
+    padding: 0.8rem 1.4rem;
+    font-size: 0.95rem;
+  }
+
+  .social-links.desktop a {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
   }
 }
 

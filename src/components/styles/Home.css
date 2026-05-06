@@ -8,12 +8,20 @@
   position: relative;
   height: auto;
   padding: 0 !important;
-  margin-top: 115px !important; /* Offset for Navbar(65) + TopBar(32) + Gap(18) */
+  margin-top: 65px !important; /* Mobile/Tablet: Navbar only, no top-bar */
 }
 
-@media (max-width: 768px) {
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
   .hero-section {
-    margin-top: 80px !important; /* Offset for Mobile Navbar(60) + Gap(20) */
+    margin-top: 70px !important; /* Navbar(65) + small gap */
+  }
+}
+
+/* Desktop: Top-bar + Navbar */
+@media (min-width: 1025px) {
+  .hero-section {
+    margin-top: 105px !important; /* TopBar(32) + Navbar(65) + Gap(8) */
   }
 }
 
