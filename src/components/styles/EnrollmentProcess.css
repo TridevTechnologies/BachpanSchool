@@ -1,135 +1,178 @@
 .enrollment-section {
-  padding: 4rem 0;
-  background-color: var(--background-light);
+  padding: 5rem 0;
+  background-color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .section-header h2 {
-  font-size: 2.5rem;
-  color: var(--primary);
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #0f172a;
   margin-bottom: 1rem;
-  font-weight: bold;
 }
 
 .section-header p {
-  font-size: 1.25rem;
-  color: var(--text-secondary);
+  font-size: 1.1rem;
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
+/* Important Dates Grid */
 .important-dates {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
 }
 
 .date-card {
-  background: white;
-  padding: 2rem;
-  border-radius: 0.5rem;
+  background: #f8fafc;
+  padding: 2.5rem 2rem;
+  border-radius: 24px;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
 }
 
 .date-card:hover {
   transform: translateY(-5px);
+  background: white;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  border-color: #facc15;
 }
 
 .date-icon {
-  font-size: 2rem;
-  color: var(--primary);
-  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  color: #1e3a8a;
+  margin-bottom: 1.5rem;
 }
 
 .date-card h3 {
-  font-size: 1.25rem;
-  color: var(--primary);
+  font-size: 1.3rem;
+  color: #0f172a;
   margin-bottom: 0.5rem;
-  font-weight: bold;
+  font-weight: 800;
 }
 
 .date-card p {
-  color: var(--text-secondary);
+  color: #1e3a8a;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 
+/* Enrollment Steps */
 .enrollment-steps {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .step-card {
   background: white;
-  padding: 2rem;
-  border-radius: 0.5rem;
+  padding: 3rem 2rem;
+  border-radius: 24px;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  border: 1px solid #f1f5f9;
+  position: relative;
+  transition: all 0.4s ease;
 }
 
 .step-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+  border-color: #1e3a8a;
+}
+
+.step-number {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  font-size: 3rem;
+  font-weight: 900;
+  color: #f1f5f9;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.step-card:hover .step-number {
+  color: #fef9c3;
 }
 
 .step-icon-wrapper {
-  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+  width: 4.5rem;
+  height: 4.5rem;
+  background: #f1f5f9;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+  transition: all 0.3s ease;
+}
+
+.step-card:hover .step-icon-wrapper {
+  background: #1e3a8a;
+  color: white;
+  transform: rotate(10deg);
 }
 
 .step-icon {
-  font-size: 2.5rem;
-  color: var(--primary);
+  font-size: 2rem;
 }
 
 .step-card h3 {
-  font-size: 1.25rem;
-  color: var(--primary);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #0f172a;
   margin-bottom: 1rem;
-  font-weight: bold;
 }
 
 .step-card p {
-  color: var(--text-secondary);
-  line-height: 1.6;
+  color: #64748b;
+  line-height: 1.7;
+  font-size: 0.95rem;
 }
 
-.enrollment-cta {
-  text-align: center;
-  margin-top: 3rem;
-}
-
-.cta-button {
-  padding: 1rem 2.5rem;
-  background-color: var(--secondary);
-  color: var(--primary);
-  border: none;
-  border-radius: 0.5rem;
-  font-size: 1.125rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.cta-button:hover {
-  background-color: var(--secondary-dark);
+/* Responsive Scaling */
+@media (max-width: 1024px) {
+  .important-dates {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
-  .important-dates,
+  .enrollment-section { padding: 4rem 0; }
+  .section-header h2 { font-size: 2.2rem; }
+  .important-dates {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
   .enrollment-steps {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
-  
-  .section-header h2 {
-    font-size: 2rem;
-  }
-  
-  .section-header p {
-    font-size: 1.1rem;
-  }
+  .step-card { padding: 2.5rem 1.5rem; }
+  .step-number { font-size: 2.5rem; top: 1rem; right: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  .section-header h2 { font-size: 1.8rem; }
+  .date-card { padding: 2rem 1rem; }
+  .step-card h3 { font-size: 1.2rem; }
 }

@@ -41,6 +41,15 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   margin-bottom: 2rem;
+  /* Add a subtle indicator for scrolling */
+  background: linear-gradient(to right, white 30%, rgba(255, 255, 255, 0)),
+              linear-gradient(to right, rgba(255, 255, 255, 0), white 70%) 0 100%,
+              radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)),
+              radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 0 100%;
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+  background-attachment: local, local, scroll, scroll;
 }
 
 .modern-fee-table {
@@ -134,14 +143,26 @@ thead th.sticky-col {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive */
+/* Responsive Scaling */
+@media (max-width: 1024px) {
+  .header-content h1 { font-size: 2.2rem; }
+  .fee-main-container { margin: -2.5rem auto 0; }
+}
+
 @media (max-width: 768px) {
-  .header-content h1 {
-    font-size: 1.8rem;
-  }
-  .fee-main-container {
-    padding: 0 1rem 3rem;
-  }
+  .fee-simple-header { padding: 5rem 1.5rem 4rem; }
+  .header-content h1 { font-size: 1.8rem; }
+  .fee-main-container { margin: -2rem auto 0; padding: 0 1rem 3rem; }
+  .premium-table-card { padding: 1rem; border-radius: 16px; }
+  .modern-fee-table th, .modern-fee-table td { padding: 0.6rem 0.8rem; font-size: 0.85rem; }
+  .btn-large-gold { padding: 0.8rem 2rem; font-size: 0.9rem; }
+}
+
+@media (max-width: 480px) {
+  .header-content h1 { font-size: 1.5rem; }
+  .fee-simple-header { padding: 4rem 1rem 3.5rem; }
+  .table-footer-cta { padding: 1.5rem 0.5rem; }
+  .table-footer-cta p { font-size: 0.9rem; }
 }
 
 /* Loading Screen */
