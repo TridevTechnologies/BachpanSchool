@@ -239,12 +239,13 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-  color: var(--primary-color);
+  color: #b80a0a !important; /* Professional Bachpan Red */
 }
 
 .nav-link:hover::before,
 .nav-link.active::before {
   width: 80%;
+  background: linear-gradient(90deg, #b80a0a, #f59e0b) !important; /* Red to Gold gradient */
 }
 
 /* Action Buttons */

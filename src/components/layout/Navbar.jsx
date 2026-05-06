@@ -18,7 +18,7 @@ import JobApplicationPopup from './JobApplicationPopup';
 import '../styles/Navbar.css';
 
 const NAV_ITEMS = [
-  { label: "Home", path: "/", isScroll: false },
+  { label: "Home", path: "hero", isScroll: true },
   { label: "About Us", path: "about", isScroll: true },
   { label: "Why Us", path: "why-choose-us", isScroll: true },
   { label: "Gallery", path: "gallery", isScroll: true },
@@ -82,26 +82,23 @@ function Navbar() {
 
   const renderNavLink = (item) => {
     const currentPath = location.pathname;
-    const isActive = currentPath === item.path || 
-                    (currentPath === "/" && item.isScroll) ||
-                    (currentPath.includes(`#${item.path}`));
+    const isActive = currentPath === item.path;
     const className = `nav-link ${isActive ? "active" : ""}`;
   
     if (item.label === "Home") {
       return (
-        <Link
-          to="/"
-          className={className}
-          onClick={(e) => {
-            if (currentPath === "/") {
-              e.preventDefault();
-              scroll.scrollToTop({ duration: 600, smooth: "easeInOutQuad" });
-            }
-            setIsOpen(false);
-          }}
+        <ScrollLink
+          to="hero"
+          spy={true}
+          smooth="easeInOutQuad"
+          offset={-70}
+          duration={600}
+          activeClass="active"
+          className="nav-link"
+          onClick={() => setIsOpen(false)}
         >
           {item.label}
-        </Link>
+        </ScrollLink>
       );
     }
   
@@ -110,6 +107,7 @@ function Navbar() {
         return (
           <ScrollLink
             to={item.path}
+            activeClass="active"
             spy={true}
             smooth="easeInOutQuad"
             offset={-70}

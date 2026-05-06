@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { scroller } from "react-scroll";
-import { useNavigate } from "react-router-dom";
-import { FaWhatsapp, FaPhoneAlt, FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaWhatsapp, FaPhoneAlt } from "react-icons/fa";
 import HeroCarousel from "../components/home/HeroCarousel";
 import AboutUs from "../components/sections/AboutUs";
 import WhyChooseUs from "../components/sections/WhyChooseUs";
@@ -14,7 +13,6 @@ import JobApplicationPopup from "../components/layout/JobApplicationPopup";
 import "../components/styles/Home.css";
 
 function Home() {
-  const navigate = useNavigate();
   const [isEnrollmentOpen, setEnrollmentOpen] = useState(false);
   const [isJobPopupOpen, setIsJobPopupOpen] = useState(false);
 
@@ -36,7 +34,7 @@ function Home() {
       <EnrollmentForm isOpen={isEnrollmentOpen} onClose={() => setEnrollmentOpen(false)} />
       <JobApplicationPopup isOpen={isJobPopupOpen} onClose={() => setIsJobPopupOpen(false)} />
 
-      <section className="hero-section">
+      <section id="hero" className="hero-section">
         <HeroCarousel />
       </section>
 
@@ -60,14 +58,6 @@ function Home() {
         <Contact />
       </section>
 
-      <section className="cta-section">
-        <div className="container">
-          <button className="btn btn-secondary" onClick={() => setEnrollmentOpen(true)}>
-            Book a Campus Tour
-          </button>
-        </div>
-      </section>
-
       {/* Floating Buttons */}
       <div className="floating-buttons">
         <FloatingJobButton onClick={() => setIsJobPopupOpen(true)} />
@@ -79,17 +69,6 @@ function Home() {
         </a>
       </div>
 
-      <div className="navbar-socials">
-        <a href="https://www.facebook.com/bachpan.datia/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-          <FaFacebookF />
-        </a>
-        <a href="https://www.instagram.com/bachpandatia/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <FaInstagram />
-        </a>
-        <a href="https://www.youtube.com/@bachpanahpsdatia7936" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-          <FaYoutube />
-        </a>
-      </div>
     </div>
   );
 }

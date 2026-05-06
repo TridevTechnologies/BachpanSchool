@@ -6,10 +6,9 @@
 /* Hero Section */
 .hero-section {
   position: relative;
-  height: 600px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  height: auto;
+  padding: 0 !important;
+  margin-top: 0;
 }
 
 .hero-cta {
@@ -45,6 +44,10 @@
 .section {
   padding: 4rem 0;
   animation: fadeIn 0.8s ease-out;
+}
+
+#about.section {
+  padding-top: 0 !important; /* Fixed the gap you found in Inspect */
 }
 
 /* CTA Section */
@@ -175,7 +178,7 @@
 /* Responsive adjustments */
 @media (max-width: 992px) {
   .hero-section {
-    height: 500px;
+    height: auto;
   }
   
   .section {
@@ -185,8 +188,8 @@
 
 @media (max-width: 768px) {
   .hero-section {
-    height: 450px;
-    padding-top: 60px; /* Add padding for navbar */
+    height: auto;
+    padding-top: 0;
   }
   
   .hero-cta {

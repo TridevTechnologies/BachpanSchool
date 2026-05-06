@@ -65,7 +65,7 @@ function HeroCarousel({ setEnrollmentOpen }) {
   }
 
   return (
-    <div className="hero-section">
+    <div className="hero-carousel-root">
       <div className="hero-image-container">
         {bannerImages.map((image, index) => (
           <div
