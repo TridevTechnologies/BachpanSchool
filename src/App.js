@@ -8,6 +8,7 @@ import InquiryForm from './components/layout/Form';
 import FullGallery from './components/sections/FullGallery';
 import ExitModal from './components/layout/ExitModal';
 import ScrollToTop from './components/layout/ScrollToTop';
+import AnnouncementBar from './components/layout/AnnouncementBar';
 import './App.css';
 
 function App() {
@@ -142,6 +143,9 @@ function App() {
         onClose={() => setIsModalOpen(false)}
         onFormSubmit={handleFormSubmit}
       />
+
+      {/* Annual Function Scrolling Ticker Bar */}
+      <AnnouncementBar />
     </Router>
   );
 }

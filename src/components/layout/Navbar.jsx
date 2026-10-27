@@ -19,6 +19,7 @@ import '../styles/Navbar.css';
 
 const NAV_ITEMS = [
   { label: "Home", path: "hero", isScroll: true },
+  { label: "Annual Function", path: "annual-function", isScroll: true },
   { label: "About Us", path: "about", isScroll: true },
   { label: "Why Us", path: "why-choose-us", isScroll: true },
   { label: "Gallery", path: "gallery", isScroll: true },

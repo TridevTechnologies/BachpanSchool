@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { scroller } from "react-scroll";
 import { FaWhatsapp, FaPhoneAlt } from "react-icons/fa";
 import HeroCarousel from "../components/home/HeroCarousel";
+import EventSpotlight from "../components/sections/EventSpotlight";
 import AboutUs from "../components/sections/AboutUs";
 import WhyChooseUs from "../components/sections/WhyChooseUs";
 import Gallery from "../components/sections/Gallery";
@@ -40,6 +41,8 @@ function Home() {
       <section id="hero" className="hero-section">
         <HeroCarousel />
       </section>
+
+      <EventSpotlight />
 
       <section id="about" className="section">
         <AboutUs />

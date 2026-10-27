@@ -40,7 +40,7 @@
 /* Floating Buttons */
 .floating-buttons {
   position: fixed;
-  bottom: 20px;
+  bottom: 60px;
   right: 20px;
   display: flex;
   flex-direction: column;
@@ -86,8 +86,7 @@
   }
 
   .floating-buttons {
-    bottom: 10px;
-    /* Lowered even more */
+    bottom: 50px;
     right: 10px;
     gap: 8px;
   }
