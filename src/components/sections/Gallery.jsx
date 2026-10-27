@@ -2,54 +2,49 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Gallery.css";
 import { FaExpandAlt, FaArrowRight } from "react-icons/fa";
-
-const PRIVATE_API_KEY = "private_jM8qtJZ+GzAwkea1dpucoPMaCC4=";
-const GALLERY_CATEGORIES = [
-  { id: "campus", label: "Campus Life", path: "Gallery/Campus" },
-  { id: "events", label: "Special Events", path: "Gallery/Events" },
-];
+import { mediaService } from "../../services/imagekit.service";
 
 function Gallery() {
   const [activeCategory, setActiveCategory] = useState("campus");
   const [images, setImages] = useState({});
+  const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
   const navigate = useNavigate();
 
+  const categories = mediaService.getCategories();
+
   useEffect(() => {
-    GALLERY_CATEGORIES.forEach((category) => {
-      fetch(`https://api.imagekit.io/v1/files?path=${encodeURIComponent(category.path)}`, {
-        headers: {
-          Authorization: "Basic " + btoa(`${PRIVATE_API_KEY}:`),
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (Array.isArray(data)) {
-            setImages((prev) => ({
-              ...prev,
-              [category.id]: data.slice(0, 6).map((file) => ({
-                url: file.url,
-                caption: file.name.replace(/\.[^/.]+$/, ""),
-              })),
-            }));
-          }
-        })
-        .catch((err) => console.error(`Error fetching ${category.label}:`, err));
+    let isMounted = true;
+    setLoading(true);
+
+    mediaService.fetchGallery(activeCategory).then((data) => {
+      if (!isMounted) return;
+      setImages((prev) => ({
+        ...prev,
+        [activeCategory]: data,
+      }));
+      setLoading(false);
     });
-  }, []);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [activeCategory]);
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   };
 
   const handleModalClose = () => {
     setSelectedImage(null);
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = "unset";
   };
 
+  const currentImages = images[activeCategory] || [];
+
   return (
-    <div className="premium-gallery-section">
+    <div className="premium-gallery-section" id="gallery">
       <div className="container">
         <div className="gallery-header-flex">
           <div className="header-left">
@@ -62,8 +57,9 @@ function Gallery() {
           </button>
         </div>
 
+        {/* Category Filter Tabs */}
         <div className="premium-gallery-tabs">
-          {GALLERY_CATEGORIES.map((category) => (
+          {categories.map((category) => (
             <button
               key={category.id}
               className={`modern-tab ${activeCategory === category.id ? "active" : ""}`}
@@ -74,15 +70,20 @@ function Gallery() {
           ))}
         </div>
 
+        {/* Dynamic Masonry Gallery Grid */}
         <div className="masonry-gallery-grid">
-          {(images[activeCategory] || []).map((image, index) => (
+          {currentImages.map((image, index) => (
             <div 
-              key={index} 
+              key={image.id || index} 
               className={`masonry-item item-size-${(index % 4) + 1}`}
               onClick={() => handleImageClick(image)}
             >
               <div className="masonry-image-wrapper">
-                <img src={image.url} alt={image.caption} loading="lazy" />
+                <img 
+                  src={image.url} 
+                  alt={image.caption || "Gallery item"} 
+                  loading="lazy"
+                />
                 <div className="masonry-overlay">
                   <FaExpandAlt className="expand-icon" />
                   <span>{image.caption}</span>
@@ -92,11 +93,15 @@ function Gallery() {
           ))}
         </div>
 
+        {/* Modal Lightbox */}
         {selectedImage && (
           <div className="gallery-premium-modal active" onClick={handleModalClose}>
             <div className="modal-stage" onClick={(e) => e.stopPropagation()}>
               <button className="close-stage" onClick={handleModalClose}>&times;</button>
-              <img src={selectedImage.url} alt={selectedImage.caption} />
+              <img 
+                src={selectedImage.url} 
+                alt={selectedImage.caption} 
+              />
               <div className="modal-info-bar">
                 <h3>{selectedImage.caption}</h3>
               </div>

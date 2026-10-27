@@ -1,4 +1,10 @@
 [[redirects]]
+  from = "/v1/*"
+  to = "https://api.imagekit.io/v1/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

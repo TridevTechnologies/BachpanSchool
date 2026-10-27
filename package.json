@@ -2,6 +2,7 @@
   "name": "bachpandatia",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://api.imagekit.io",
   "dependencies": {
     "@cloudinary/react": "^1.13.1",
     "@cloudinary/url-gen": "^1.21.0",

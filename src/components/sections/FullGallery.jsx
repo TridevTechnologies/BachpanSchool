@@ -3,70 +3,60 @@ import { useLocation } from "react-router-dom";
 import LazyLoad from "react-lazy-load";
 import { motion } from "framer-motion";
 import "../styles/FullGallery.css";
-
-const PRIVATE_API_KEY = "private_jM8qtJZ+GzAwkea1dpucoPMaCC4="; // ⚠️ Exposed Key (Not Secure)
-const GALLERY_CATEGORIES = [
-  { id: "campus", label: "Campus", path: "Gallery/Campus" },
-  { id: "events", label: "Events", path: "Gallery/Events" },
-];
+import { mediaService } from "../../services/imagekit.service";
 
 function FullGallery() {
   const location = useLocation();
+  const categories = mediaService.getCategories();
   const [activeCategory, setActiveCategory] = useState(location.state?.category || "campus");
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
+    let isMounted = true;
     setLoading(true);
-    fetch(`https://api.imagekit.io/v1/files?path=${encodeURIComponent(GALLERY_CATEGORIES.find(cat => cat.id === activeCategory).path)}`, {
-      headers: {
-        Authorization: "Basic " + btoa(`${PRIVATE_API_KEY}:`),
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setImages(data.map((file) => ({
-            url: file.url,
-            caption: file.name.replace(/\.[^/.]+$/, ""), // Remove file extension
-          })));
-        }
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(`Error fetching ${activeCategory} images:`, err);
-        setLoading(false);
-      });
+
+    mediaService.fetchGallery(activeCategory).then((data) => {
+      if (!isMounted) return;
+      setImages(data);
+      setLoading(false);
+    });
+
+    return () => {
+      isMounted = false;
+    };
   }, [activeCategory]);
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   };
 
   const handleModalClose = () => {
     setSelectedImage(null);
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = "unset";
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Escape') {
+    if (e.key === "Escape") {
       handleModalClose();
     }
   };
 
   useEffect(() => {
     if (selectedImage) {
-      document.addEventListener('keydown', handleKeyPress);
+      document.addEventListener("keydown", handleKeyPress);
     } else {
-      document.removeEventListener('keydown', handleKeyPress);
+      document.removeEventListener("keydown", handleKeyPress);
     }
     return () => {
-      document.removeEventListener('keydown', handleKeyPress);
-      document.body.style.overflow = 'unset';
+      document.removeEventListener("keydown", handleKeyPress);
+      document.body.style.overflow = "unset";
     };
   }, [selectedImage]);
+
+  const activeCategoryObj = categories.find((cat) => cat.id === activeCategory) || categories[0];
 
   return (
     <motion.div 
@@ -82,12 +72,13 @@ function FullGallery() {
             animate={{ y: 0, opacity: 1 }} 
             transition={{ duration: 0.5 }}
           >
-            {GALLERY_CATEGORIES.find(cat => cat.id === activeCategory).label} Gallery
+            {activeCategoryObj.label} Gallery
           </motion.h2>
         </div>
 
+        {/* Category Navigation Tabs */}
         <div className="gallery-tabs">
-          {GALLERY_CATEGORIES.map((category) => (
+          {categories.map((category) => (
             <motion.button
               key={category.id}
               className={`tab-button ${activeCategory === category.id ? "active" : ""}`}
@@ -100,20 +91,21 @@ function FullGallery() {
           ))}
         </div>
 
+        {/* Dynamic Gallery Grid */}
         <div className="gallery-grid">
           {loading
-            ? [...Array(5)].map((_, index) => (
+            ? [...Array(6)].map((_, index) => (
                 <motion.div 
                   key={index} 
                   className="skeleton"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5 }}
-                ></motion.div>
+                />
               ))
             : images.map((image, index) => (
                 <motion.div 
-                  key={index} 
+                  key={image.id || index} 
                   className="gallery-item"
                   onClick={() => handleImageClick(image)}
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -123,7 +115,7 @@ function FullGallery() {
                   <LazyLoad height="100%" offset={100}>
                     <img 
                       src={image.url} 
-                      alt={image.caption} 
+                      alt={image.caption || "Gallery item"} 
                       style={{ 
                         width: "100%", 
                         height: "100%", 
@@ -139,6 +131,7 @@ function FullGallery() {
           }
         </div>
 
+        {/* Modal Lightbox */}
         {selectedImage && (
           <motion.div 
             className="image-modal active"
