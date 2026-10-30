@@ -97,6 +97,7 @@ function HeroCarousel({ setEnrollmentOpen }) {
             )}
           </div>
 
+          {/* Temporarily commented out: Apply Now action bar
           <div className="hero-text-container">
             <div className="hero-text-content">
               <h1>Give Your Child the Best Start at Bachpan & Academic Heights Public School</h1>
@@ -106,6 +107,7 @@ function HeroCarousel({ setEnrollmentOpen }) {
               </button>
             </div>
           </div>
+          */}
         </div>
       )}
 

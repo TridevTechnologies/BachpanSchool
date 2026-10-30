@@ -59,16 +59,7 @@ class ImageKitMediaService {
       banners = await this.fetchFolderFiles("/");
     }
 
-    // Include the local Annual Function banner if present
-    const annualFunctionBanner = {
-      id: "banner-annual-function-2026",
-      name: "Annual Function Smritam 2026",
-      url: `${process.env.PUBLIC_URL || ""}/ANNUAL FUNCTION BANNER 2026.png`,
-      caption: "Annual Function: 'स्मृतtam 2026'",
-      alt: "Annual Function Smritam 2026",
-    };
-
-    return [annualFunctionBanner, ...banners];
+    return banners;
   }
 
   /**

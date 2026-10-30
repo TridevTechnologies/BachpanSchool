@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { 
   FaCalendarAlt, 
   FaClock, 
@@ -13,19 +12,15 @@ import '../styles/EventSpotlight.css';
 
 function EventSpotlight() {
   const googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=Patwari+Farm+House+Datia+Madhya+Pradesh";
+  const primaryBanner = `${process.env.PUBLIC_URL || ""}/ANNUAL FUNCTION BANNER 2026.png`;
+  const encodedBanner = `${process.env.PUBLIC_URL || ""}/ANNUAL%20FUNCTION%20BANNER%202026.png`;
 
   return (
     <section className="event-spotlight-wrapper" id="annual-function">
       <div className="event-spotlight-container">
         
-        {/* Header Badge & Title */}
-        <motion.div 
-          className="spotlight-header"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+        {/* 1. Header Badge & Title */}
+        <div className="spotlight-header">
           <div className="event-badge">
             <FaStar className="star-icon" />
             <span>Upcoming Mega Event 2026</span>
@@ -38,28 +33,11 @@ function EventSpotlight() {
           <p className="event-tagline">
             "MOMENTS TODAY, MEMORIES FOREVER"
           </p>
-        </motion.div>
+        </div>
 
-        {/* Spotlight Card with Banner & Details */}
-        <motion.div 
-          className="spotlight-card"
-          initial={{ opacity: 0, scale: 0.97 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          {/* Banner Image Display */}
-          <div className="banner-image-container">
-            <img 
-              src={`${process.env.PUBLIC_URL}/ANNUAL FUNCTION BANNER 2026.png`}
-              alt="Academic Heights Public School Datia - Annual Function Smritam 2026 Banner" 
-              className="event-banner-image"
-              loading="lazy"
-            />
-            <div className="banner-gloss-overlay"></div>
-          </div>
-
-          {/* Event Quick Info Grid */}
+        {/* 2. Spotlight Card: Details First, Then Image */}
+        <div className="spotlight-card">
+          {/* Quick Info Grid (Details: Date, Time, Venue) */}
           <div className="event-info-grid">
             <div className="info-card">
               <div className="info-icon-wrapper calendar">
@@ -126,7 +104,23 @@ function EventSpotlight() {
             </a>
           </div>
 
-        </motion.div>
+          {/* 3. Banner Image Display (Placed directly after details) */}
+          <div className="banner-image-container">
+            <img 
+              src={primaryBanner}
+              onError={(e) => {
+                if (e.target.src !== encodedBanner) {
+                  e.target.src = encodedBanner;
+                }
+              }}
+              alt="Academic Heights Public School Datia - Annual Function Smritam 2026 Banner" 
+              className="event-banner-image"
+              loading="eager"
+            />
+            <div className="banner-gloss-overlay"></div>
+          </div>
+
+        </div>
       </div>
     </section>
   );
